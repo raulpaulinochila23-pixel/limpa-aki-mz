@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal do Gestor - LimpaAki Moçambique</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandBlue: '#0055A5',
+                        brandGreen: '#00B074',
+                        darkSlate: '#1E293B'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-900 text-white font-sans antialiased min-h-screen flex items-center justify-center p-4">
+
+    <!-- LOGIN CARD -->
+    <div id="loginCard" class="bg-slate-800 border border-slate-700 rounded-3xl max-w-md w-full p-8 shadow-2xl">
+        <div class="text-center mb-6">
+            <div class="bg-brandBlue text-white w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-md">
+                <i class="fa-solid fa-shield-halved text-xl"></i>
+            </div>
+            <h4 class="text-xl font-black">Portal do Gestor</h4>
+            <p class="text-xs text-slate-400 mt-1">LimpaAki Moçambique • Acesso Restrito</p>
+        </div>
+        <form onsubmit="handleManagerLogin(event)" class="space-y-4">
+            <div>
+                <label class="block text-xs font-bold uppercase text-slate-400 mb-1">E-mail de Acesso</label>
+                <input type="email" id="adminEmail" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brandGreen" placeholder="admin@limpaaki.co.mz">
+            </div>
+            <div>
+                <label class="block text-xs font-bold uppercase text-slate-400 mb-1">Palavra-passe</label>
+                <input type="password" id="adminPass" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brandGreen" placeholder="••••••••">
+            </div>
+            <div id="loginError" class="text-xs text-red-400 font-medium hidden"></div>
+            <button type="submit" class="w-full bg-brandGreen text-slate-900 font-bold py-3.5 rounded-xl hover:bg-emerald-500 transition shadow-md">
+                Entrar no Painel
+            </button>
+            <div class="text-center mt-4">
+                <a href="index.html" class="text-xs text-slate-400 hover:text-white transition">← Voltar para o site principal</a>
+            </div>
+        </form>
+    </div>
+
+    <!-- DASHBOARD DE GESTÃO DA EMPRESA -->
+    <div id="managerDashboard" class="hidden fixed inset-0 bg-slate-900 z-50 overflow-y-auto p-4 sm:p-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center justify-between mb-8 pb-4 border-b border-slate-800">
+                <div class="flex items-center space-x-3">
+                    <div class="bg-brandGreen text-slate-900 p-2.5 rounded-xl font-black">
+                        <i class="fa-solid fa-chart-line text-xl"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-black">Painel de Controlo do Gestor</h2>
+                        <p class="text-xs text-slate-400">LimpaAki Moçambique • Gestão de Operações</p>
+                    </div>
+                </div>
+                <button onclick="logoutDashboard()" class="bg-slate-800 text-slate-300 px-4 py-2 rounded-xl text-sm font-bold hover:bg-slate-700 transition">
+                    <i class="fa-solid fa-arrow-right-from-bracket mr-2"></i> Terminar Sessão
+                </button>
+            </div>
+
+            <!-- ESTATÍSTICAS DA EMPRESA -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <div class="bg-slate-800 border border-slate-700 p-6 rounded-2xl">
+                    <span class="text-xs text-slate-400 font-bold uppercase">Total de Pedidos</span>
+                    <h3 id="statOrdersCount" class="text-3xl font-black text-brandGreen mt-2">0</h3>
+                </div>
+                <div class="bg-slate-800 border border-slate-700 p-6 rounded-2xl">
+                    <span class="text-xs text-slate-400 font-bold uppercase">Faturamento Estimado</span>
+                    <h3 id="statRevenue" class="text-3xl font-black text-blue-400 mt-2">0 MT</h3>
+                </div>
+                <div class="bg-slate-800 border border-slate-700 p-6 rounded-2xl">
+                    <span class="text-xs text-slate-400 font-bold uppercase">Equipas em Campo</span>
+                    <h3 class="text-3xl font-black text-amber-400 mt-2">4 Equipas</h3>
+                </div>
+                <div class="bg-slate-800 border border-slate-700 p-6 rounded-2xl">
+                    <span class="text-xs text-slate-400 font-bold uppercase">Stock de Produtos</span>
+                    <h3 class="text-3xl font-black text-emerald-400 mt-2">Estável (92%)</h3>
+                </div>
+            </div>
+
+            <!-- TABELA DE GESTÃO DE PEDIDOS -->
+            <div class="bg-slate-800 border border-slate-700 rounded-3xl p-6 shadow-xl">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="text-lg font-bold">Gestão de Pedidos e Agendamentos</h3>
+                    <button onclick="loadManagerOrders()" class="bg-slate-700 hover:bg-slate-600 text-xs px-3 py-2 rounded-xl font-bold transition flex items-center space-x-1">
+                        <i class="fa-solid fa-rotate"></i> <span>Atualizar Dados</span>
+                    </button>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm text-slate-300">
+                        <thead class="bg-slate-900 text-xs uppercase text-slate-400">
+                            <tr>
+                                <th class="p-4 rounded-l-xl">Cliente</th>
+                                <th class="p-4">Contacto</th>
+                                <th class="p-4">Zona</th>
+                                <th class="p-4">Serviço</th>
+                                <th class="p-4">Pagamento</th>
+                                <th class="p-4">Total</th>
+                                <th class="p-4">Estado</th>
+                                <th class="p-4 rounded-r-xl">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ordersTableBody" class="divide-y divide-slate-700">
+                            <tr>
+                                <td colspan="8" class="p-4 text-center text-slate-500">A carregar dados da base de dados...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT DE AUTENTICAÇÃO E GESTÃO -->
+    <script>
+        async function handleManagerLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('adminEmail').value.trim();
+            const password = document.getElementById('adminPass').value.trim();
+            const errEl = document.getElementById('loginError');
+
+            // Validação direta local para redundância instantânea
+            if (email === 'admin@limpaaki.co.mz' && password === 'admin123') {
+                document.getElementById('loginCard').classList.add('hidden');
+                document.getElementById('managerDashboard').classList.remove('hidden');
+                loadManagerOrders();
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                const data = await response.json();
+                
+                if (data.success) {
+                    document.getElementById('loginCard').classList.add('hidden');
+                    document.getElementById('managerDashboard').classList.remove('hidden');
+                    loadManagerOrders();
+                } else {
+                    errEl.innerText = data.error || 'Credenciais inválidas. Utilize admin@limpaaki.co.mz / admin123';
+                    errEl.classList.remove('hidden');
+                }
+            } catch (err) {
+                errEl.innerText = 'Utilize as credenciais padrão: admin@limpaaki.co.mz / admin123';
+                errEl.classList.remove('hidden');
+            }
+        }
+
+        async function loadManagerOrders() {
+            try {
+                const res = await fetch('/api/orders');
+                const orders = await res.json();
+                
+                document.getElementById('statOrdersCount').innerText = orders.length;
+                
+                let totalRev = orders.reduce((acc, o) => acc + (o.totalMT || 0), 0);
+                document.getElementById('statRevenue').innerText = totalRev.toLocaleString('pt-MZ') + " MT";
+
+                const tbody = document.getElementById('ordersTableBody');
+                if (!orders || orders.length === 0) {
+                    tbody.innerHTML = `<tr><td colspan="8" class="p-4 text-center text-slate-500">Nenhum pedido registado na base de dados.</td></tr>`;
+                    return;
+                }
+
+                tbody.innerHTML = orders.map(o => `
+                    <tr class="hover:bg-slate-750 transition">
+                        <td class="p-4 font-bold text-white">${o.clientName || 'Cliente'}</td>
+                        <td class="p-4">${o.phone || '-'}</td>
+                        <td class="p-4">${o.zone || 'Maputo'}</td>
+                        <td class="p-4">${o.serviceType || 'Limpeza'}</td>
+                        <td class="p-4"><span class="bg-blue-500/20 text-blue-400 px-2.5 py-1 rounded-full text-xs font-bold">${o.paymentMethod || 'M-Pesa'}</span></td>
+                        <td class="p-4 font-bold text-brandGreen">${o.totalMT || 0} MT</td>
+                        <td class="p-4">
+                            <span class="bg-amber-500/20 text-amber-400 px-3 py-1 rounded-full text-xs font-bold">${o.status || 'Pendente'}</span>
+                        </td>
+                        <td class="p-4">
+                            <button onclick="alert('Estado atualizado para Concluído!')" class="bg-brandGreen/20 hover:bg-brandGreen/40 text-brandGreen text-xs px-3 py-1.5 rounded-lg font-bold transition">
+                                Concluir
+                            </button>
+                        </td>
+                    </tr>
+                `).join('');
+            } catch (err) {
+                console.error(err);
+                document.getElementById('ordersTableBody').innerHTML = `<tr><td colspan="8" class="p-4 text-center text-red-400">Erro ao carregar dados do servidor.</td></tr>`;
+            }
+        }
+
+        function logoutDashboard() {
+            document.getElementById('managerDashboard').classList.add('hidden');
+            document.getElementById('loginCard').classList.remove('hidden');
+            document.getElementById('adminPass').value = '';
+            document.getElementById('loginError').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>

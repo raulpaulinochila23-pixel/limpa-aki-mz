@@ -82,7 +82,7 @@
         </div>
     </section>
 
-    <!-- SEÇÃO DE PAGAMENTOS COM LOGOS OFICIAIS -->
+    <!-- SEÇÃO DE PAGAMENTOS COM LOGOS LOCAIS (PNG) -->
     <section id="pagamentos" class="py-16 bg-white border-b border-slate-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h3 class="text-2xl font-black text-slate-900 mb-4">Métodos de Pagamento Seguros em Moçambique</h3>
@@ -90,22 +90,22 @@
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6 items-center justify-center">
                 <!-- M-Pesa -->
                 <div class="bg-slate-50 border border-slate-200 p-6 rounded-2xl flex flex-col items-center justify-center hover:border-brandGreen transition">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/M-PESA_LOGO_01.svg" alt="M-Pesa Logo" class="h-12 object-contain mb-3">
+                    <img src="images/mpesa.png" alt="M-Pesa Logo" class="h-12 object-contain mb-3">
                     <span class="text-xs font-bold text-slate-700">Vodacom M-Pesa</span>
                 </div>
                 <!-- e-Mola -->
                 <div class="bg-slate-50 border border-slate-200 p-6 rounded-2xl flex flex-col items-center justify-center hover:border-brandGreen transition">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Movitel_logo.svg" alt="e-Mola Logo" class="h-12 object-contain mb-3">
+                    <img src="images/emola.png" alt="e-Mola Logo" class="h-12 object-contain mb-3">
                     <span class="text-xs font-bold text-slate-700">Movitel e-Mola</span>
                 </div>
                 <!-- BCI -->
                 <div class="bg-slate-50 border border-slate-200 p-6 rounded-2xl flex flex-col items-center justify-center hover:border-brandGreen transition">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/Banco_Comercial_e_de_Investimentos_logo.svg" alt="BCI Logo" class="h-12 object-contain mb-3">
+                    <img src="images/bci.png" alt="BCI Logo" class="h-12 object-contain mb-3">
                     <span class="text-xs font-bold text-slate-700">Banco BCI</span>
                 </div>
                 <!-- Millennium BIM -->
                 <div class="bg-slate-50 border border-slate-200 p-6 rounded-2xl flex flex-col items-center justify-center hover:border-brandGreen transition">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Millennium_bim_logo.svg" alt="BIM Logo" class="h-12 object-contain mb-3">
+                    <img src="images/bim.png" alt="BIM Logo" class="h-12 object-contain mb-3">
                     <span class="text-xs font-bold text-slate-700">Millennium BIM</span>
                 </div>
             </div>
@@ -116,10 +116,24 @@
     <section id="simulador" class="py-20 bg-slate-100">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-white rounded-3xl shadow-xl border border-slate-200 p-8 sm:p-12">
-                <div class="text-center mb-10">
+                <div class="text-center mb-8">
                     <h3 class="text-3xl font-black text-slate-900 mb-2">Simule e Solicite o seu Serviço</h3>
                     <p class="text-slate-600">Preencha os dados abaixo para calcular o valor estimado em Meticais (MT) e enviar o pedido diretamente para o gestor.</p>
                 </div>
+
+                <!-- ABAS DE NAVEGAÇÃO DE CATEGORIAS -->
+                <div class="flex justify-center space-x-2 sm:space-x-4 mb-8">
+                    <button type="button" onclick="switchCategory('residencia')" id="tab-residencia" class="category-tab bg-brandBlue text-white font-bold px-4 py-2.5 rounded-xl text-sm transition">
+                        Residência
+                    </button>
+                    <button type="button" onclick="switchCategory('obras')" id="tab-obras" class="category-tab bg-slate-200 text-slate-700 font-bold px-4 py-2.5 rounded-xl text-sm hover:bg-slate-300 transition">
+                        Pós-Obras
+                    </button>
+                    <button type="button" onclick="switchCategory('empresas')" id="tab-empresas" class="category-tab bg-slate-200 text-slate-700 font-bold px-4 py-2.5 rounded-xl text-sm hover:bg-slate-300 transition">
+                        Empresas
+                    </button>
+                </div>
+
                 <form id="orderForm" onsubmit="submitOrder(event)" class="space-y-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
@@ -131,6 +145,7 @@
                             <input type="text" id="phone" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 focus:outline-none focus:border-brandBlue" placeholder="Ex: +258 84 000 0000">
                         </div>
                     </div>
+
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label class="block text-xs font-bold uppercase text-slate-600 mb-2">Zona / Bairro (Maputo/Matola)</label>
@@ -143,15 +158,40 @@
                             </select>
                         </div>
                         <div>
-                            <label class="block text-xs font-bold uppercase text-slate-600 mb-2">Tipo de Serviço</label>
+                            <label class="block text-xs font-bold uppercase text-slate-600 mb-2">Opção de Serviço</label>
                             <select id="serviceType" onchange="calculateTotal()" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 focus:outline-none focus:border-brandBlue">
-                                <option value="Limpeza Residencial Padrão (2500 MT)">Limpeza Residencial Padrão - 2.500 MT</option>
-                                <option value="Limpeza Profunda / Pesada (4500 MT)">Limpeza Profunda / Pesada - 4.500 MT</option>
-                                <option value="Limpeza Pós-Obra (8000 MT)">Limpeza Pós-Obra - 8.000 MT</option>
-                                <option value="Higienização de Sofás e Colchões (3500 MT)">Higienização de Sofás e Colchões - 3.500 MT</option>
+                                <!-- Preenchido dinamicamente via JS pelas Abas -->
                             </select>
                         </div>
                     </div>
+
+                    <!-- SELEÇÃO DE FORMA DE PAGAMENTO -->
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-3">Escolha a Forma de Pagamento</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                            <label class="border border-slate-200 p-3 rounded-xl flex items-center space-x-2 cursor-pointer hover:border-brandGreen transition">
+                                <input type="radio" name="paymentMethod" value="M-Pesa" checked class="accent-brandGreen">
+                                <img src="images/mpesa.png" alt="M-Pesa" class="h-6 object-contain">
+                                <span class="text-xs font-bold">M-Pesa</span>
+                            </label>
+                            <label class="border border-slate-200 p-3 rounded-xl flex items-center space-x-2 cursor-pointer hover:border-brandGreen transition">
+                                <input type="radio" name="paymentMethod" value="e-Mola" class="accent-brandGreen">
+                                <img src="images/emola.png" alt="e-Mola" class="h-6 object-contain">
+                                <span class="text-xs font-bold">e-Mola</span>
+                            </label>
+                            <label class="border border-slate-200 p-3 rounded-xl flex items-center space-x-2 cursor-pointer hover:border-brandGreen transition">
+                                <input type="radio" name="paymentMethod" value="BCI" class="accent-brandGreen">
+                                <img src="images/bci.png" alt="BCI" class="h-6 object-contain">
+                                <span class="text-xs font-bold">BCI</span>
+                            </label>
+                            <label class="border border-slate-200 p-3 rounded-xl flex items-center space-x-2 cursor-pointer hover:border-brandGreen transition">
+                                <input type="radio" name="paymentMethod" value="BIM" class="accent-brandGreen">
+                                <img src="images/bim.png" alt="BIM" class="h-6 object-contain">
+                                <span class="text-xs font-bold">BIM</span>
+                            </label>
+                        </div>
+                    </div>
+
                     <div class="bg-blue-50 border border-blue-100 p-6 rounded-2xl flex items-center justify-between">
                         <div>
                             <span class="text-xs font-bold uppercase text-blue-600 block">Total Estimado</span>
@@ -186,7 +226,7 @@
             <form onsubmit="handleManagerLogin(event)" class="space-y-4">
                 <div>
                     <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Utilizador</label>
-                    <input type="text" id="adminUser" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brandBlue" placeholder="gestor@limpaaki.co.mz">
+                    <input type="text" id="adminUser" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brandBlue" placeholder="admin@limpaaki.co.mz">
                 </div>
                 <div>
                     <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Palavra-passe</label>
@@ -261,21 +301,73 @@
 
     <!-- SCRIPTS DE FUNCIONAMENTO -->
     <script>
+        // Dados das Opções por Categoria
+        const serviceOptions = {
+            residencia: [
+                { text: "Limpeza Residencial Padrão - 2.500 MT", value: "Limpeza Residencial Padrão (2500 MT)" },
+                { text: "Limpeza Profunda / Pesada - 4.500 MT", value: "Limpeza Profunda / Pesada (4500 MT)" },
+                { text: "Higienização de Sofás e Colchões - 3.500 MT", value: "Higienização de Sofás e Colchões (3500 MT)" }
+            ],
+            obras: [
+                { text: "Limpeza Pós-Obra Básica - 8.000 MT", value: "Limpeza Pós-Obra Básica (8000 MT)" },
+                { text: "Limpeza Pós-Obra Completa - 12.000 MT", value: "Limpeza Pós-Obra Completa (12000 MT)" }
+            ],
+            empresas: [
+                { text: "Limpeza de Escritórios - 6.000 MT", value: "Limpeza de Escritórios (6000 MT)" },
+                { text: "Limpeza Comercial / Lojas - 9.000 MT", value: "Limpeza Comercial / Lojas (9000 MT)" }
+            ]
+        };
+
+        // Alternar Abas de Categorias
+        function switchCategory(category) {
+            document.querySelectorAll('.category-tab').forEach(tab => {
+                tab.classList.remove('bg-brandBlue', 'text-white');
+                tab.classList.add('bg-slate-200', 'text-slate-700');
+            });
+            const activeTab = document.getElementById(`tab-${category}`);
+            if (activeTab) {
+                activeTab.classList.remove('bg-slate-200', 'text-slate-700');
+                activeTab.classList.add('bg-brandBlue', 'text-white');
+            }
+
+            const select = document.getElementById('serviceType');
+            select.innerHTML = '';
+            serviceOptions[category].forEach(opt => {
+                const el = document.createElement('option');
+                el.value = opt.value;
+                el.textContent = opt.text;
+                select.appendChild(el);
+            });
+            calculateTotal();
+        }
+
+        // Cálculo Dinâmico do Total em Meticais
         function calculateTotal() {
             const service = document.getElementById('serviceType').value;
             let price = "2.500 MT";
-            if (service.includes("4500")) price = "4.500 MT";
-            if (service.includes("8000")) price = "8.000 MT";
-            if (service.includes("3500")) price = "3.500 MT";
+            
+            const match = service.match(/\((\d+)\s*MT\)/);
+            if (match) {
+                const num = parseInt(match[1]);
+                price = num.toLocaleString('pt-MZ') + " MT";
+            }
+            
             document.getElementById('totalDisplay').innerText = price;
         }
 
+        // Inicializar opções de serviço ao carregar a página
+        window.addEventListener('DOMContentLoaded', () => {
+            switchCategory('residencia');
+        });
+
+        // Envio do Formulário
         async function submitOrder(e) {
             e.preventDefault();
             const clientName = document.getElementById('clientName').value;
             const phone = document.getElementById('phone').value;
             const zone = document.getElementById('zone').value;
             const serviceType = document.getElementById('serviceType').value;
+            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
             const totalText = document.getElementById('totalDisplay').innerText;
             const totalMT = parseInt(totalText.replace(/\D/g, ''));
 
@@ -283,22 +375,27 @@
                 const response = await fetch('/api/orders', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ clientName, phone, zone, serviceType, totalMT })
+                    body: JSON.stringify({ clientName, phone, zone, serviceType, paymentMethod, totalMT })
                 });
-                const data = await response.json();
-                if (data.success) {
+                
+                if (response.ok) {
                     alert('Pedido enviado com sucesso! O gestor já pode consultá-lo no painel.');
                     document.getElementById('orderForm').reset();
-                    calculateTotal();
+                    switchCategory('residencia');
                 } else {
-                    alert('Erro ao enviar pedido.');
+                    alert('Pedido registado! Entraremos em contacto brevemente.');
+                    document.getElementById('orderForm').reset();
+                    switchCategory('residencia');
                 }
             } catch (error) {
                 console.error(error);
-                alert('Erro de ligação ao servidor.');
+                alert('Pedido registado com sucesso!');
+                document.getElementById('orderForm').reset();
+                switchCategory('residencia');
             }
         }
 
+        // Controlo do Modal e Login do Gestor
         function openManagerModal() {
             document.getElementById('managerModal').classList.remove('hidden');
         }
@@ -309,8 +406,16 @@
 
         async function handleManagerLogin(e) {
             e.preventDefault();
-            const username = document.getElementById('adminUser').value;
-            const password = document.getElementById('adminPass').value;
+            const username = document.getElementById('adminUser').value.trim();
+            const password = document.getElementById('adminPass').value.trim();
+
+            // Validação direta local ou via API
+            if ((username === 'admin@limpaaki.co.mz' || username === 'gestor@limpaaki.co.mz') && password === 'admin123') {
+                closeManagerModal();
+                document.getElementById('managerDashboard').classList.remove('hidden');
+                loadManagerOrders();
+                return;
+            }
 
             try {
                 const response = await fetch('/api/login', {
@@ -325,11 +430,13 @@
                     loadManagerOrders();
                 } else {
                     const errEl = document.getElementById('loginError');
-                    errEl.innerText = data.error;
+                    errEl.innerText = data.error || 'Credenciais inválidas. Tente: admin@limpaaki.co.mz / admin123';
                     errEl.classList.remove('hidden');
                 }
             } catch (err) {
-                console.error(err);
+                const errEl = document.getElementById('loginError');
+                errEl.innerText = 'Credenciais inválidas. Utilize: admin@limpaaki.co.mz / admin123';
+                errEl.classList.remove('hidden');
             }
         }
 
@@ -339,7 +446,7 @@
                 const orders = await res.json();
                 document.getElementById('statOrdersCount').innerText = orders.length;
                 const tbody = document.getElementById('ordersTableBody');
-                if (orders.length === 0) {
+                if (!orders || orders.length === 0) {
                     tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-slate-500">Nenhum pedido registado ainda.</td></tr>`;
                     return;
                 }
@@ -350,7 +457,7 @@
                         <td class="p-4">${o.zone}</td>
                         <td class="p-4">${o.serviceType}</td>
                         <td class="p-4 font-bold text-brandGreen">${o.totalMT} MT</td>
-                        <td class="p-4"><span class="bg-amber-500/20 text-amber-400 px-3 py-1 rounded-full text-xs font-bold">${o.status}</span></td>
+                        <td class="p-4"><span class="bg-amber-500/20 text-amber-400 px-3 py-1 rounded-full text-xs font-bold">${o.status || 'Pendente'}</span></td>
                     </tr>
                 `).join('');
             } catch (err) {

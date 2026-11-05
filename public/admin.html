@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal do Gestor - LimpaAki Moçambique</title>
+    <title>Painel do Gestor - LimpaAki Moçambique</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
@@ -20,100 +20,179 @@
         }
     </script>
 </head>
-<body class="bg-slate-900 text-white font-sans antialiased min-h-screen flex items-center justify-center p-4">
+<body class="bg-slate-900 text-white font-sans antialiased min-h-screen">
 
     <!-- LOGIN CARD -->
-    <div id="loginCard" class="bg-slate-800 border border-slate-700 rounded-3xl max-w-md w-full p-8 shadow-2xl">
-        <div class="text-center mb-6">
-            <div class="bg-brandBlue text-white w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-md">
-                <i class="fa-solid fa-shield-halved text-xl"></i>
+    <div id="loginCard" class="fixed inset-0 bg-slate-900 z-50 flex items-center justify-center p-4">
+        <div class="bg-slate-800 border border-slate-700 rounded-3xl max-w-md w-full p-8 shadow-2xl">
+            <div class="text-center mb-6">
+                <div class="bg-brandBlue text-white w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-md">
+                    <i class="fa-solid fa-shield-halved text-xl"></i>
+                </div>
+                <h4 class="text-xl font-black">Portal do Gestor</h4>
+                <p class="text-xs text-slate-400 mt-1">LimpaAki Moçambique • Acesso Restrito</p>
             </div>
-            <h4 class="text-xl font-black">Portal do Gestor</h4>
-            <p class="text-xs text-slate-400 mt-1">LimpaAki Moçambique • Acesso Restrito</p>
+            <form onsubmit="handleManagerLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-400 mb-1">E-mail de Acesso</label>
+                    <input type="email" id="adminEmail" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brandGreen" placeholder="admin@limpaaki.co.mz">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-400 mb-1">Palavra-passe</label>
+                    <input type="password" id="adminPass" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brandGreen" placeholder="••••••••">
+                </div>
+                <div id="loginError" class="text-xs text-red-400 font-medium hidden"></div>
+                <button type="submit" class="w-full bg-brandGreen text-slate-900 font-bold py-3.5 rounded-xl hover:bg-emerald-500 transition shadow-md">
+                    Entrar no Painel
+                </button>
+            </form>
         </div>
-        <form onsubmit="handleManagerLogin(event)" class="space-y-4">
-            <div>
-                <label class="block text-xs font-bold uppercase text-slate-400 mb-1">E-mail de Acesso</label>
-                <input type="email" id="adminEmail" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brandGreen" placeholder="admin@limpaaki.co.mz">
-            </div>
-            <div>
-                <label class="block text-xs font-bold uppercase text-slate-400 mb-1">Palavra-passe</label>
-                <input type="password" id="adminPass" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brandGreen" placeholder="••••••••">
-            </div>
-            <div id="loginError" class="text-xs text-red-400 font-medium hidden"></div>
-            <button type="submit" class="w-full bg-brandGreen text-slate-900 font-bold py-3.5 rounded-xl hover:bg-emerald-500 transition shadow-md">
-                Entrar no Painel
-            </button>
-            <div class="text-center mt-4">
-                <a href="index.html" class="text-xs text-slate-400 hover:text-white transition">← Voltar para o site principal</a>
-            </div>
-        </form>
     </div>
 
-    <!-- DASHBOARD DE GESTÃO DA EMPRESA -->
-    <div id="managerDashboard" class="hidden fixed inset-0 bg-slate-900 z-50 overflow-y-auto p-4 sm:p-10">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex items-center justify-between mb-8 pb-4 border-b border-slate-800">
-                <div class="flex items-center space-x-3">
-                    <div class="bg-brandGreen text-slate-900 p-2.5 rounded-xl font-black">
-                        <i class="fa-solid fa-chart-line text-xl"></i>
-                    </div>
-                    <div>
-                        <h2 class="text-2xl font-black">Painel de Controlo do Gestor</h2>
-                        <p class="text-xs text-slate-400">LimpaAki Moçambique • Gestão de Operações</p>
-                    </div>
+    <!-- DASHBOARD PRINCIPAL -->
+    <div id="managerDashboard" class="hidden min-h-screen p-4 sm:p-8 max-w-7xl mx-auto">
+        
+        <!-- HEADER DO PAINEL -->
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 pb-4 border-b border-slate-800 gap-4">
+            <div class="flex items-center space-x-3">
+                <div class="bg-brandGreen text-slate-900 p-2.5 rounded-xl font-black">
+                    <i class="fa-solid fa-chart-line text-xl"></i>
                 </div>
-                <button onclick="logoutDashboard()" class="bg-slate-800 text-slate-300 px-4 py-2 rounded-xl text-sm font-bold hover:bg-slate-700 transition">
-                    <i class="fa-solid fa-arrow-right-from-bracket mr-2"></i> Terminar Sessão
-                </button>
-            </div>
-
-            <!-- ESTATÍSTICAS DA EMPRESA -->
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-                <div class="bg-slate-800 border border-slate-700 p-6 rounded-2xl">
-                    <span class="text-xs text-slate-400 font-bold uppercase">Total de Pedidos</span>
-                    <h3 id="statOrdersCount" class="text-3xl font-black text-brandGreen mt-2">0</h3>
-                </div>
-                <div class="bg-slate-800 border border-slate-700 p-6 rounded-2xl">
-                    <span class="text-xs text-slate-400 font-bold uppercase">Faturamento Estimado</span>
-                    <h3 id="statRevenue" class="text-3xl font-black text-blue-400 mt-2">0 MT</h3>
-                </div>
-                <div class="bg-slate-800 border border-slate-700 p-6 rounded-2xl">
-                    <span class="text-xs text-slate-400 font-bold uppercase">Equipas em Campo</span>
-                    <h3 class="text-3xl font-black text-amber-400 mt-2">4 Equipas</h3>
-                </div>
-                <div class="bg-slate-800 border border-slate-700 p-6 rounded-2xl">
-                    <span class="text-xs text-slate-400 font-bold uppercase">Stock de Produtos</span>
-                    <h3 class="text-3xl font-black text-emerald-400 mt-2">Estável (92%)</h3>
+                <div>
+                    <h2 class="text-2xl font-black">Painel de Gestão Integrada</h2>
+                    <p class="text-xs text-slate-400">LimpaAki Moçambique • Operações & Logística</p>
                 </div>
             </div>
+            <button onclick="logoutDashboard()" class="bg-slate-800 text-slate-300 px-4 py-2 rounded-xl text-sm font-bold hover:bg-slate-700 transition">
+                <i class="fa-solid fa-arrow-right-from-bracket mr-2"></i> Terminar Sessão
+            </button>
+        </div>
 
-            <!-- TABELA DE GESTÃO DE PEDIDOS -->
+        <!-- METRICAS DE RESUMO -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+            <div class="bg-slate-800 border border-slate-700 p-5 rounded-2xl">
+                <span class="text-xs text-slate-400 font-bold uppercase">Total Pedidos</span>
+                <h3 id="statOrdersCount" class="text-3xl font-black text-brandGreen mt-1">0</h3>
+            </div>
+            <div class="bg-slate-800 border border-slate-700 p-5 rounded-2xl">
+                <span class="text-xs text-slate-400 font-bold uppercase">Faturamento Estimado</span>
+                <h3 id="statRevenue" class="text-3xl font-black text-blue-400 mt-1">0 MT</h3>
+            </div>
+            <div class="bg-slate-800 border border-slate-700 p-5 rounded-2xl">
+                <span class="text-xs text-slate-400 font-bold uppercase">Equipas Ativas</span>
+                <h3 id="statTeamsCount" class="text-3xl font-black text-amber-400 mt-1">2 Equipas</h3>
+            </div>
+            <div class="bg-slate-800 border border-slate-700 p-5 rounded-2xl">
+                <span class="text-xs text-slate-400 font-bold uppercase">Itens em Stock</span>
+                <h3 id="statStockCount" class="text-3xl font-black text-emerald-400 mt-1">4 Categorias</h3>
+            </div>
+        </div>
+
+        <!-- MENU DE NAVEGAÇÃO DE SEÇÕES -->
+        <div class="flex space-x-3 mb-6 border-b border-slate-800 pb-3">
+            <button onclick="switchTab('orders')" id="tab-btn-orders" class="tab-main-btn bg-brandBlue text-white font-bold px-5 py-2.5 rounded-xl text-sm transition">
+                <i class="fa-solid fa-list-check mr-2"></i> Pedidos
+            </button>
+            <button onclick="switchTab('stock')" id="tab-btn-stock" class="tab-main-btn bg-slate-800 text-slate-400 font-bold px-5 py-2.5 rounded-xl text-sm hover:text-white transition">
+                <i class="fa-solid fa-boxes-stacked mr-2"></i> Gestão de Estoque
+            </button>
+            <button onclick="switchTab('teams')" id="tab-btn-teams" class="tab-main-btn bg-slate-800 text-slate-400 font-bold px-5 py-2.5 rounded-xl text-sm hover:text-white transition">
+                <i class="fa-solid fa-people-group mr-2"></i> Gestão de Equipas
+            </button>
+        </div>
+
+        <!-- 1. SEÇÃO DE PEDIDOS -->
+        <div id="section-orders" class="tab-content">
             <div class="bg-slate-800 border border-slate-700 rounded-3xl p-6 shadow-xl">
-                <div class="flex items-center justify-between mb-6">
-                    <h3 class="text-lg font-bold">Gestão de Pedidos e Agendamentos</h3>
-                    <button onclick="loadManagerOrders()" class="bg-slate-700 hover:bg-slate-600 text-xs px-3 py-2 rounded-xl font-bold transition flex items-center space-x-1">
-                        <i class="fa-solid fa-rotate"></i> <span>Atualizar Dados</span>
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-lg font-bold">Pedidos Registados</h3>
+                    <button onclick="loadOrders()" class="bg-slate-700 hover:bg-slate-600 text-xs px-3 py-2 rounded-xl font-bold transition">
+                        <i class="fa-solid fa-rotate mr-1"></i> Atualizar
                     </button>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left text-sm text-slate-300">
                         <thead class="bg-slate-900 text-xs uppercase text-slate-400">
                             <tr>
-                                <th class="p-4 rounded-l-xl">Cliente</th>
+                                <th class="p-4">Cliente</th>
                                 <th class="p-4">Contacto</th>
                                 <th class="p-4">Zona</th>
                                 <th class="p-4">Serviço</th>
-                                <th class="p-4">Pagamento</th>
                                 <th class="p-4">Total</th>
+                                <th class="p-4">Equipa Alocada</th>
                                 <th class="p-4">Estado</th>
-                                <th class="p-4 rounded-r-xl">Ações</th>
+                                <th class="p-4 text-center">Ações</th>
                             </tr>
                         </thead>
                         <tbody id="ordersTableBody" class="divide-y divide-slate-700">
+                            <!-- Preenchido via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. SEÇÃO DE ESTOQUE DE MATERIAL -->
+        <div id="section-stock" class="tab-content hidden">
+            <div class="bg-slate-800 border border-slate-700 rounded-3xl p-6 shadow-xl space-y-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <h3 class="text-lg font-bold">Controlo de Detergentes e Equipamentos</h3>
+                    <form onsubmit="addStockItem(event)" class="flex flex-wrap gap-2">
+                        <input type="text" id="itemName" placeholder="Nome do Material" required class="bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs focus:outline-none">
+                        <input type="number" id="itemQty" placeholder="Qtd" required class="w-20 bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs focus:outline-none">
+                        <input type="text" id="itemUnit" placeholder="Unidade (L, Kg, Un)" required class="w-28 bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs focus:outline-none">
+                        <button type="submit" class="bg-brandGreen text-slate-900 font-bold px-4 py-2 rounded-xl text-xs hover:bg-emerald-500 transition">
+                            + Adicionar
+                        </button>
+                    </form>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm text-slate-300">
+                        <thead class="bg-slate-900 text-xs uppercase text-slate-400">
                             <tr>
-                                <td colspan="8" class="p-4 text-center text-slate-500">A carregar dados da base de dados...</td>
+                                <th class="p-4">Material</th>
+                                <th class="p-4">Quantidade Em Stock</th>
+                                <th class="p-4">Unidade</th>
+                                <th class="p-4">Ações de Ajuste</th>
                             </tr>
+                        </thead>
+                        <tbody id="stockTableBody" class="divide-y divide-slate-700">
+                            <!-- Preenchido via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. SEÇÃO DE EQUIPAS -->
+        <div id="section-teams" class="tab-content hidden">
+            <div class="bg-slate-800 border border-slate-700 rounded-3xl p-6 shadow-xl space-y-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <h3 class="text-lg font-bold">Registo e Alocação de Membros</h3>
+                    <form onsubmit="addTeamMember(event)" class="flex flex-wrap gap-2">
+                        <input type="text" id="memberName" placeholder="Nome do Membro" required class="bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs focus:outline-none">
+                        <input type="text" id="memberPhone" placeholder="Contacto (+258)" required class="bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs focus:outline-none">
+                        <select id="teamSelect" class="bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs focus:outline-none">
+                            <option value="Equipa Alfa (Maputo)">Equipa Alfa (Maputo)</option>
+                            <option value="Equipa Beta (Matola)">Equipa Beta (Matola)</option>
+                        </select>
+                        <button type="submit" class="bg-brandBlue text-white font-bold px-4 py-2 rounded-xl text-xs hover:bg-blue-600 transition">
+                            + Adicionar Membro
+                        </button>
+                    </form>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm text-slate-300">
+                        <thead class="bg-slate-900 text-xs uppercase text-slate-400">
+                            <tr>
+                                <th class="p-4">Nome do Membro</th>
+                                <th class="p-4">Contacto</th>
+                                <th class="p-4">Equipa Atribuída</th>
+                                <th class="p-4 text-center">Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody id="teamsTableBody" class="divide-y divide-slate-700">
+                            <!-- Preenchido via JS -->
                         </tbody>
                     </table>
                 </div>
@@ -121,89 +200,171 @@
         </div>
     </div>
 
-    <!-- SCRIPT DE AUTENTICAÇÃO E GESTÃO -->
     <script>
+        // ESTADO GLOBAL LOCAL
+        let ordersData = [];
+        let stockData = [
+            { id: 1, name: "Detergente Multiuso", qty: 45, unit: "Litros" },
+            { id: 2, name: "Desinfetante Hospitalar", qty: 20, unit: "Litros" },
+            { id: 3, name: "Panos Microfibra", qty: 60, unit: "Unidades" },
+            { id: 4, name: "Aaspiradores Industriais", qty: 3, unit: "Maquinas" }
+        ];
+        let membersData = [
+            { id: 1, name: "Celso Cossa", phone: "+258 84 111 2222", team: "Equipa Alfa (Maputo)" },
+            { id: 2, name: "Marta Sitoe", phone: "+258 82 333 4444", team: "Equipa Beta (Matola)" }
+        ];
+
+        // Mudar Abas do Painel
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-main-btn').forEach(btn => {
+                btn.classList.remove('bg-brandBlue', 'text-white');
+                btn.classList.add('bg-slate-800', 'text-slate-400');
+            });
+
+            document.getElementById(`section-${tab}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`tab-btn-${tab}`);
+            activeBtn.classList.remove('bg-slate-800', 'text-slate-400');
+            activeBtn.classList.add('bg-brandBlue', 'text-white');
+        }
+
+        // Login
         async function handleManagerLogin(e) {
             e.preventDefault();
             const email = document.getElementById('adminEmail').value.trim();
             const password = document.getElementById('adminPass').value.trim();
-            const errEl = document.getElementById('loginError');
 
-            // Validação direta local para redundância instantânea
             if (email === 'admin@limpaaki.co.mz' && password === 'admin123') {
                 document.getElementById('loginCard').classList.add('hidden');
                 document.getElementById('managerDashboard').classList.remove('hidden');
-                loadManagerOrders();
+                initDashboard();
                 return;
             }
-
-            try {
-                const response = await fetch('/api/login', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, password })
-                });
-                const data = await response.json();
-                
-                if (data.success) {
-                    document.getElementById('loginCard').classList.add('hidden');
-                    document.getElementById('managerDashboard').classList.remove('hidden');
-                    loadManagerOrders();
-                } else {
-                    errEl.innerText = data.error || 'Credenciais inválidas. Utilize admin@limpaaki.co.mz / admin123';
-                    errEl.classList.remove('hidden');
-                }
-            } catch (err) {
-                errEl.innerText = 'Utilize as credenciais padrão: admin@limpaaki.co.mz / admin123';
-                errEl.classList.remove('hidden');
-            }
+            document.getElementById('loginError').innerText = "Credenciais inválidas. Use admin@limpaaki.co.mz / admin123";
+            document.getElementById('loginError').classList.remove('hidden');
         }
 
-        async function loadManagerOrders() {
+        function initDashboard() {
+            loadOrders();
+            renderStock();
+            renderTeams();
+        }
+
+        // Carregar Pedidos do Backend
+        async function loadOrders() {
             try {
                 const res = await fetch('/api/orders');
-                const orders = await res.json();
+                ordersData = await res.json();
                 
-                document.getElementById('statOrdersCount').innerText = orders.length;
-                
-                let totalRev = orders.reduce((acc, o) => acc + (o.totalMT || 0), 0);
-                document.getElementById('statRevenue').innerText = totalRev.toLocaleString('pt-MZ') + " MT";
+                document.getElementById('statOrdersCount').innerText = ordersData.length;
+                let rev = ordersData.reduce((a, b) => a + (b.totalMT || 0), 0);
+                document.getElementById('statRevenue').innerText = rev.toLocaleString('pt-MZ') + " MT";
 
                 const tbody = document.getElementById('ordersTableBody');
-                if (!orders || orders.length === 0) {
-                    tbody.innerHTML = `<tr><td colspan="8" class="p-4 text-center text-slate-500">Nenhum pedido registado na base de dados.</td></tr>`;
+                if (!ordersData || ordersData.length === 0) {
+                    tbody.innerHTML = `<tr><td colspan="8" class="p-4 text-center text-slate-500">Nenhum pedido registado ainda.</td></tr>`;
                     return;
                 }
 
-                tbody.innerHTML = orders.map(o => `
+                tbody.innerHTML = ordersData.map((o, index) => `
                     <tr class="hover:bg-slate-750 transition">
-                        <td class="p-4 font-bold text-white">${o.clientName || 'Cliente'}</td>
-                        <td class="p-4">${o.phone || '-'}</td>
-                        <td class="p-4">${o.zone || 'Maputo'}</td>
-                        <td class="p-4">${o.serviceType || 'Limpeza'}</td>
-                        <td class="p-4"><span class="bg-blue-500/20 text-blue-400 px-2.5 py-1 rounded-full text-xs font-bold">${o.paymentMethod || 'M-Pesa'}</span></td>
-                        <td class="p-4 font-bold text-brandGreen">${o.totalMT || 0} MT</td>
+                        <td class="p-4 font-bold text-white">${o.clientName}</td>
+                        <td class="p-4">${o.phone}</td>
+                        <td class="p-4">${o.zone}</td>
+                        <td class="p-4">${o.serviceType}</td>
+                        <td class="p-4 font-bold text-brandGreen">${o.totalMT} MT</td>
                         <td class="p-4">
-                            <span class="bg-amber-500/20 text-amber-400 px-3 py-1 rounded-full text-xs font-bold">${o.status || 'Pendente'}</span>
+                            <select onchange="assignTeam(${index}, this.value)" class="bg-slate-900 border border-slate-700 text-xs rounded-lg p-1 text-slate-300">
+                                <option value="Não Alocada" ${o.assignedTeam === 'Não Alocada' ? 'selected' : ''}>Não Alocada</option>
+                                <option value="Equipa Alfa (Maputo)" ${o.assignedTeam === 'Equipa Alfa (Maputo)' ? 'selected' : ''}>Equipa Alfa</option>
+                                <option value="Equipa Beta (Matola)" ${o.assignedTeam === 'Equipa Beta (Matola)' ? 'selected' : ''}>Equipa Beta</option>
+                            </select>
                         </td>
                         <td class="p-4">
-                            <button onclick="alert('Estado atualizado para Concluído!')" class="bg-brandGreen/20 hover:bg-brandGreen/40 text-brandGreen text-xs px-3 py-1.5 rounded-lg font-bold transition">
-                                Concluir
-                            </button>
+                            <span class="px-2.5 py-1 rounded-full text-xs font-bold ${o.status === 'Aceito' ? 'bg-emerald-500/20 text-emerald-400' : o.status === 'Recusado' ? 'bg-red-500/20 text-red-400' : 'bg-amber-500/20 text-amber-400'}">
+                                ${o.status || 'Pendente'}
+                            </span>
+                        </td>
+                        <td class="p-4 flex justify-center space-x-1">
+                            <button onclick="updateOrderStatus(${index}, 'Aceito')" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs px-2 py-1 rounded-lg font-bold transition">Aceitar</button>
+                            <button onclick="updateOrderStatus(${index}, 'Recusado')" class="bg-red-600 hover:bg-red-500 text-white text-xs px-2 py-1 rounded-lg font-bold transition">Recusar</button>
                         </td>
                     </tr>
                 `).join('');
             } catch (err) {
                 console.error(err);
-                document.getElementById('ordersTableBody').innerHTML = `<tr><td colspan="8" class="p-4 text-center text-red-400">Erro ao carregar dados do servidor.</td></tr>`;
             }
+        }
+
+        function updateOrderStatus(index, newStatus) {
+            ordersData[index].status = newStatus;
+            loadOrders();
+        }
+
+        function assignTeam(index, teamName) {
+            ordersData[index].assignedTeam = teamName;
+            loadOrders();
+        }
+
+        // Renderizar e Gerir Estoque
+        function renderStock() {
+            const tbody = document.getElementById('stockTableBody');
+            tbody.innerHTML = stockData.map((item, idx) => `
+                <tr>
+                    <td class="p-4 font-bold text-white">${item.name}</td>
+                    <td class="p-4 font-black text-brandGreen text-base">${item.qty}</td>
+                    <td class="p-4">${item.unit}</td>
+                    <td class="p-4 flex space-x-2">
+                        <button onclick="adjustStock(${idx}, 1)" class="bg-slate-700 hover:bg-slate-600 px-2.5 py-1 rounded-lg text-xs font-bold">+1</button>
+                        <button onclick="adjustStock(${idx}, -1)" class="bg-slate-700 hover:bg-slate-600 px-2.5 py-1 rounded-lg text-xs font-bold">-1</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function addStockItem(e) {
+            e.preventDefault();
+            const name = document.getElementById('itemName').value;
+            const qty = parseInt(document.getElementById('itemQty').value);
+            const unit = document.getElementById('itemUnit').value;
+
+            stockData.push({ id: Date.now(), name, qty, unit });
+            renderStock();
+            e.target.reset();
+        }
+
+        function adjustStock(idx, amount) {
+            stockData[idx].qty = Math.max(0, stockData[idx].qty + amount);
+            renderStock();
+        }
+
+        // Renderizar e Gerir Equipas
+        function renderTeams() {
+            const tbody = document.getElementById('teamsTableBody');
+            tbody.innerHTML = membersData.map(m => `
+                <tr>
+                    <td class="p-4 font-bold text-white">${m.name}</td>
+                    <td class="p-4">${m.phone}</td>
+                    <td class="p-4"><span class="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-xs font-bold">${m.team}</span></td>
+                    <td class="p-4 text-center"><span class="bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded text-xs font-bold">Ativo</span></td>
+                </tr>
+            `).join('');
+        }
+
+        function addTeamMember(e) {
+            e.preventDefault();
+            const name = document.getElementById('memberName').value;
+            const phone = document.getElementById('memberPhone').value;
+            const team = document.getElementById('teamSelect').value;
+
+            membersData.push({ id: Date.now(), name, phone, team });
+            renderTeams();
+            e.target.reset();
         }
 
         function logoutDashboard() {
             document.getElementById('managerDashboard').classList.add('hidden');
             document.getElementById('loginCard').classList.remove('hidden');
-            document.getElementById('adminPass').value = '';
-            document.getElementById('loginError').classList.add('hidden');
         }
     </script>
 </body>

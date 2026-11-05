@@ -202,8 +202,8 @@
                             <span class="text-xs font-bold text-brandGreen">M-Pesa / e-Mola / Bancos</span>
                         </div>
                     </div>
-                    <button type="submit" class="w-full bg-brandBlue text-white font-bold py-4 rounded-xl hover:bg-blue-700 transition shadow-lg shadow-blue-500/20">
-                        Confirmar e Enviar Pedido
+                    <button type="submit" id="submitBtn" class="w-full bg-brandBlue text-white font-bold py-4 rounded-xl hover:bg-blue-700 transition shadow-lg shadow-blue-500/20 flex items-center justify-center space-x-2">
+                        <span>Confirmar e Enviar Pedido</span>
                     </button>
                 </form>
             </div>
@@ -301,7 +301,6 @@
 
     <!-- SCRIPTS DE FUNCIONAMENTO -->
     <script>
-        // Dados das Opções por Categoria
         const serviceOptions = {
             residencia: [
                 { text: "Limpeza Residencial Padrão - 2.500 MT", value: "Limpeza Residencial Padrão (2500 MT)" },
@@ -318,7 +317,6 @@
             ]
         };
 
-        // Alternar Abas de Categorias
         function switchCategory(category) {
             document.querySelectorAll('.category-tab').forEach(tab => {
                 tab.classList.remove('bg-brandBlue', 'text-white');
@@ -341,7 +339,6 @@
             calculateTotal();
         }
 
-        // Cálculo Dinâmico do Total em Meticais
         function calculateTotal() {
             const service = document.getElementById('serviceType').value;
             let price = "2.500 MT";
@@ -355,14 +352,18 @@
             document.getElementById('totalDisplay').innerText = price;
         }
 
-        // Inicializar opções de serviço ao carregar a página
         window.addEventListener('DOMContentLoaded', () => {
             switchCategory('residencia');
         });
 
-        // Envio do Formulário
+        // Envio do Formulário com Feedback Visual (Loading e Prevenção de Múltiplos Cliques)
         async function submitOrder(e) {
             e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin mr-2"></i><span>A enviar pedido...</span>`;
+
             const clientName = document.getElementById('clientName').value;
             const phone = document.getElementById('phone').value;
             const zone = document.getElementById('zone').value;
@@ -392,10 +393,12 @@
                 alert('Pedido registado com sucesso!');
                 document.getElementById('orderForm').reset();
                 switchCategory('residencia');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = `<span>Confirmar e Enviar Pedido</span>`;
             }
         }
 
-        // Controlo do Modal e Login do Gestor
         function openManagerModal() {
             document.getElementById('managerModal').classList.remove('hidden');
         }
@@ -409,7 +412,6 @@
             const username = document.getElementById('adminUser').value.trim();
             const password = document.getElementById('adminPass').value.trim();
 
-            // Validação direta local ou via API
             if ((username === 'admin@limpaaki.co.mz' || username === 'gestor@limpaaki.co.mz') && password === 'admin123') {
                 closeManagerModal();
                 document.getElementById('managerDashboard').classList.remove('hidden');

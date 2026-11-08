@@ -328,7 +328,7 @@
             </div>
         </section>
 
-        <!-- ABOUT US / QUEM SOMOS (TÍTULOS ESTILIZADOS E SEM ÍCONES) -->
+        <!-- ABOUT US / QUEM SOMOS -->
         <section id="about" class="liquid-glass rounded-3xl p-8 sm:p-14 space-y-10">
             <div class="max-w-3xl mx-auto text-center space-y-3">
                 <span class="text-xs font-heading font-bold uppercase text-brandGreen tracking-widest">Sobre o LimpaAki</span>
@@ -390,12 +390,12 @@
         </div>
     </div>
 
-    <!-- PAINEL DO GESTOR -->
+    <!-- PAINEL DO GESTOR (ATUALIZADO COM O ESTILO LIQUID GLASS E FONTES) -->
     <div id="managerDashboard" class="fixed inset-0 bg-darkSlate z-50 hidden overflow-y-auto p-4 sm:p-10">
         <div class="max-w-7xl mx-auto space-y-8">
-            <div class="flex items-center justify-between pb-4 border-b border-white/10">
+            <div class="liquid-glass p-6 rounded-3xl flex items-center justify-between border border-white/10">
                 <div class="flex items-center space-x-3">
-                    <div class="bg-brandGreen text-slate-950 p-2.5 rounded-xl font-black">
+                    <div class="bg-brandGreen text-slate-950 p-3 rounded-2xl font-black">
                         <i class="fa-solid fa-chart-line text-xl"></i>
                     </div>
                     <div>
@@ -403,31 +403,33 @@
                         <p class="text-xs text-slate-400">LimpaAki Moçambique • Gestão de Operações</p>
                     </div>
                 </div>
-                <button onclick="closeDashboard()" class="liquid-glass-light text-slate-200 px-4 py-2 rounded-xl text-xs font-bold hover:bg-white/10 transition">
+                <button onclick="closeDashboard()" class="liquid-glass-light text-slate-200 px-5 py-2.5 rounded-xl text-xs font-heading font-bold hover:bg-white/10 transition border border-white/10">
                     <i class="fa-solid fa-arrow-right-from-bracket mr-2"></i> Terminar Sessão
                 </button>
             </div>
 
+            <!-- ESTATÍSTICAS DO PAINEL -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="liquid-glass p-6 rounded-2xl">
+                <div class="liquid-glass p-6 rounded-3xl border border-white/10">
                     <span class="text-xs font-heading font-bold text-slate-400 uppercase">Total de Pedidos</span>
-                    <h3 id="statOrdersCount" class="text-3xl font-heading font-black text-brandGreen mt-2">0</h3>
+                    <h3 id="statOrdersCount" class="text-3xl font-heading font-black title-gradient-1 mt-2">0</h3>
                 </div>
-                <div class="liquid-glass p-6 rounded-2xl">
+                <div class="liquid-glass p-6 rounded-3xl border border-white/10">
                     <span class="text-xs font-heading font-bold text-slate-400 uppercase">Equipas em Campo</span>
-                    <h3 class="text-3xl font-heading font-black text-indigo-400 mt-2">4 Equipas</h3>
+                    <h3 class="text-3xl font-heading font-black title-gradient-2 mt-2">4 Equipas</h3>
                 </div>
-                <div class="liquid-glass p-6 rounded-2xl">
+                <div class="liquid-glass p-6 rounded-3xl border border-white/10">
                     <span class="text-xs font-heading font-bold text-slate-400 uppercase">Stock de Detergentes</span>
                     <h3 class="text-3xl font-heading font-black text-amber-400 mt-2">Estável (92%)</h3>
                 </div>
             </div>
 
-            <div class="liquid-glass rounded-3xl p-6 shadow-xl">
-                <h3 class="text-base font-heading font-bold text-white mb-4">Pedidos Recentes na Base de Dados</h3>
+            <!-- TABELA DE PEDIDOS -->
+            <div class="liquid-glass rounded-3xl p-6 sm:p-8 shadow-2xl border border-white/10">
+                <h3 class="text-lg font-heading font-bold text-white mb-6">Pedidos Recentes na Base de Dados</h3>
                 <div class="overflow-x-auto">
-                    <table class="w-full text-left text-xs text-slate-300">
-                        <thead class="bg-darkSlate/80 text-slate-400 uppercase font-heading">
+                    <table class="w-full text-left text-xs text-slate-300 font-body">
+                        <thead class="bg-darkSlate/90 text-slate-400 uppercase font-heading tracking-wider">
                             <tr>
                                 <th class="p-4 rounded-l-xl">Cliente</th>
                                 <th class="p-4">Contacto</th>
@@ -439,7 +441,7 @@
                         </thead>
                         <tbody id="ordersTableBody" class="divide-y divide-white/5">
                             <tr>
-                                <td colspan="6" class="p-4 text-center text-slate-400">A carregar dados do servidor...</td>
+                                <td colspan="6" class="p-6 text-center text-slate-400">A carregar dados do servidor...</td>
                             </tr>
                         </tbody>
                     </table>
@@ -594,7 +596,7 @@
                 document.getElementById('statOrdersCount').innerText = orders.length;
                 const tbody = document.getElementById('ordersTableBody');
                 if (!orders || orders.length === 0) {
-                    tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-slate-400">Nenhum pedido registado ainda.</td></tr>`;
+                    tbody.innerHTML = `<tr><td colspan="6" class="p-6 text-center text-slate-400">Nenhum pedido registado ainda.</td></tr>`;
                     return;
                 }
                 tbody.innerHTML = orders.map(o => `

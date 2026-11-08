@@ -6,7 +6,7 @@
     <title>LimpaAki Moçambique | Serviços de Limpeza Profissional</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Importação das Fontes Montserrat e Open Sans -->
+    <!-- Fontes Montserrat e Open Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -41,6 +41,16 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .title-gradient-1 {
+            background: linear-gradient(135deg, #00B074 0%, #34D399 50%, #60A5FA 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .title-gradient-2 {
+            background: linear-gradient(135deg, #818CF8 0%, #C084FC 50%, #F472B6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
     </style>
 </head>
@@ -86,7 +96,7 @@
                 </span>
 
                 <h2 class="text-4xl sm:text-6xl lg:text-7xl font-heading font-black tracking-tight leading-[1.05] text-white">
-                    Limpeza profissional <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-brandGreen via-emerald-400 to-teal-300">sem complicações.</span>
+                    Limpeza profissional <br><span class="title-gradient-1">sem complicações.</span>
                 </h2>
 
                 <p class="text-slate-300 text-base sm:text-lg max-w-xl leading-relaxed font-body">
@@ -105,7 +115,7 @@
                 </div>
             </div>
 
-            <!-- Imagem Principal perfeitamente dimensionada para Tela Cheia -->
+            <!-- Imagem Principal dimensionada -->
             <div class="lg:col-span-5 relative">
                 <div class="liquid-glass p-3 rounded-[2.5rem] shadow-2xl border border-white/10">
                     <div class="relative rounded-[2rem] overflow-hidden aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/3]">
@@ -129,24 +139,15 @@
         <!-- VANTAGENS -->
         <section id="vantagens" class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div class="liquid-glass p-8 rounded-3xl space-y-3">
-                <div class="w-12 h-12 bg-emerald-500/10 text-brandGreen rounded-2xl flex items-center justify-center text-xl font-bold mb-4">
-                    <i class="fa-solid fa-user-shield"></i>
-                </div>
-                <h4 class="text-lg font-heading font-bold text-white">Equipes Rigorosamente Verificadas</h4>
+                <h4 class="text-lg font-heading font-bold title-gradient-1">Equipes Rigorosamente Verificadas</h4>
                 <p class="text-xs text-slate-300 leading-relaxed">Profissionais testados com histórico validado e foco total na segurança e privacidade do seu domicílio.</p>
             </div>
             <div class="liquid-glass p-8 rounded-3xl space-y-3">
-                <div class="w-12 h-12 bg-blue-500/10 text-blue-400 rounded-2xl flex items-center justify-center text-xl font-bold mb-4">
-                    <i class="fa-solid fa-bolt"></i>
-                </div>
-                <h4 class="text-lg font-heading font-bold text-white">Agendamento Simplificado</h4>
+                <h4 class="text-lg font-heading font-bold title-gradient-1">Agendamento Simplificado</h4>
                 <p class="text-xs text-slate-300 leading-relaxed">Selecione o serviço, escolha o bairro em Maputo ou Matola e confirme sem burocracias em segundos.</p>
             </div>
             <div class="liquid-glass p-8 rounded-3xl space-y-3">
-                <div class="w-12 h-12 bg-purple-500/15 text-purple-400 rounded-2xl flex items-center justify-center text-xl font-bold mb-4">
-                    <i class="fa-solid fa-hand-holding-dollar"></i>
-                </div>
-                <h4 class="text-lg font-heading font-bold text-white">Preços Claros e Justos</h4>
+                <h4 class="text-lg font-heading font-bold title-gradient-1">Preços Claros e Justos</h4>
                 <p class="text-xs text-slate-300 leading-relaxed">Transparência total em Meticais (MT). Sem custos ocultos ou taxas surpresa após a conclusão do trabalho.</p>
             </div>
         </section>
@@ -169,7 +170,7 @@
                                 A partir de 2.500 MT
                             </span>
                         </div>
-                        <h4 class="text-2xl font-heading font-black text-white">Limpeza Residencial & Profunda</h4>
+                        <h4 class="text-2xl font-heading font-black title-gradient-2">Limpeza Residencial & Profunda</h4>
                         <p class="text-xs text-slate-300 leading-relaxed">Ideal para manutenção periódica, limpezas pesadas de mudança ou higienização completa de estofados.</p>
                         <ul class="space-y-3 text-xs text-slate-200">
                             <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-brandGreen"></i><span>Limpeza integral de quartos, salas e cozinhas</span></li>
@@ -191,7 +192,7 @@
                                 A partir de 6.000 MT
                             </span>
                         </div>
-                        <h4 class="text-2xl font-heading font-black text-white">Pós-Obra & Escritórios</h4>
+                        <h4 class="text-2xl font-heading font-black title-gradient-2">Pós-Obra & Escritórios</h4>
                         <p class="text-xs text-slate-300 leading-relaxed">Remoção profunda de resíduos de construção, poeiras finas e contratos de conservação para o seu escritório ou loja.</p>
                         <ul class="space-y-3 text-xs text-slate-200">
                             <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-brandGreen"></i><span>Remoção de restos de tinta, cimento e resíduos</span></li>
@@ -327,11 +328,11 @@
             </div>
         </section>
 
-        <!-- ABOUT US / QUEM SOMOS -->
+        <!-- ABOUT US / QUEM SOMOS (TÍTULOS ESTILIZADOS E SEM ÍCONES) -->
         <section id="about" class="liquid-glass rounded-3xl p-8 sm:p-14 space-y-10">
             <div class="max-w-3xl mx-auto text-center space-y-3">
                 <span class="text-xs font-heading font-bold uppercase text-brandGreen tracking-widest">Sobre o LimpaAki</span>
-                <h3 class="text-3xl font-heading font-black text-white">Quem Somos e Qual o nosso Propósito</h3>
+                <h3 class="text-3xl font-heading font-black title-gradient-1">Quem Somos e Qual o nosso Propósito</h3>
                 <p class="text-slate-300 text-sm leading-relaxed">
                     Sediado em Maputo, o <strong class="text-white">LimpaAki Moçambique</strong> é o parceiro de confiança especializado na gestão de limpezas profissionais para habitações, escritórios e empreendimentos. Unimos rigor operacional, tecnologia e equipas altamente qualificadas para garantir ambientes impecáveis.
                 </p>
@@ -339,18 +340,15 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
                 <div class="liquid-glass-light p-6 rounded-2xl space-y-2">
-                    <div class="text-brandGreen text-xl font-bold"><i class="fa-solid fa-bullseye"></i></div>
-                    <h4 class="text-base font-heading font-bold text-white">A nossa Missão</h4>
+                    <h4 class="text-base font-heading font-bold title-gradient-1">A nossa Missão</h4>
                     <p class="text-xs text-slate-300 leading-relaxed">Garantir mais tempo livre, saúde e bem-estar aos nossos clientes através de serviços de limpeza rigorosos e pontuais.</p>
                 </div>
                 <div class="liquid-glass-light p-6 rounded-2xl space-y-2">
-                    <div class="text-indigo-400 text-xl font-bold"><i class="fa-solid fa-eye"></i></div>
-                    <h4 class="text-base font-heading font-bold text-white">A nossa Visão</h4>
+                    <h4 class="text-base font-heading font-bold title-gradient-2">A nossa Visão</h4>
                     <p class="text-xs text-slate-300 leading-relaxed">Consolidarmo-nos como a plataforma líder em eficiência, transparência e inovação logística de limpezas em Moçambique.</p>
                 </div>
                 <div class="liquid-glass-light p-6 rounded-2xl space-y-2">
-                    <div class="text-amber-400 text-xl font-bold"><i class="fa-solid fa-gem"></i></div>
-                    <h4 class="text-base font-heading font-bold text-white">Os nossos Valores</h4>
+                    <h4 class="text-base font-heading font-bold text-amber-400">Os nossos Valores</h4>
                     <p class="text-xs text-slate-300 leading-relaxed">Rigor técnico, integridade com colaboradores, preços justos em Meticais e foco inegociável na satisfação do cliente.</p>
                 </div>
             </div>

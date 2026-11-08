@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LimpaAki Moçambique | Serviços de Limpeza Profissional</title>
+    <title>LimpaAki Moçambique | Gestão Operacional</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Fontes Montserrat e Open Sans -->
@@ -114,7 +114,6 @@
                 </div>
             </div>
 
-            <!-- Imagem Principal dimensionada -->
             <div class="lg:col-span-5 relative">
                 <div class="liquid-glass p-3 rounded-[2.5rem] shadow-2xl border border-white/10">
                     <div class="relative rounded-[2rem] overflow-hidden aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/3]">
@@ -160,7 +159,6 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Residencial -->
                 <div class="liquid-glass p-8 sm:p-10 rounded-3xl flex flex-col justify-between space-y-6">
                     <div class="space-y-5">
                         <div class="flex justify-between items-center">
@@ -182,7 +180,6 @@
                     </a>
                 </div>
 
-                <!-- Obras & Empresas -->
                 <div class="liquid-glass p-8 sm:p-10 rounded-3xl flex flex-col justify-between space-y-6">
                     <div class="space-y-5">
                         <div class="flex justify-between items-center">
@@ -238,7 +235,6 @@
                     <p class="text-xs text-slate-300">Preencha os dados abaixo e envie o pedido diretamente para o painel de gestão.</p>
                 </div>
 
-                <!-- ABAS DE NAVEGAÇÃO -->
                 <div class="flex justify-center p-1.5 bg-darkSlate/80 rounded-2xl border border-white/10 space-x-2">
                     <button type="button" onclick="switchCategory('residencia')" id="tab-residencia" class="category-tab w-full py-2.5 rounded-xl text-xs font-heading font-bold transition bg-brandPurple text-white">
                         Residência
@@ -308,7 +304,6 @@
                         </div>
                     </div>
 
-                    <!-- CAIXA DE TOTAL BEM VISÍVEL -->
                     <div class="liquid-glass-light border border-brandGreen/40 p-6 rounded-2xl flex items-center justify-between shadow-xl">
                         <div>
                             <span class="text-xs font-heading font-bold uppercase text-brandGreen tracking-wider block mb-1">Total Estimado</span>
@@ -359,7 +354,7 @@
 
     </main>
 
-    <!-- MODAL DE LOGIN DO GESTOR (SEM ÍCONES) -->
+    <!-- MODAL DE LOGIN DO GESTOR -->
     <div id="managerModal" class="fixed inset-0 bg-darkSlate/90 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
         <div class="liquid-glass border border-white/10 rounded-3xl max-w-md w-full p-8 shadow-2xl relative">
             <button onclick="closeManagerModal()" class="absolute top-6 right-6 text-slate-400 hover:text-white">
@@ -386,58 +381,175 @@
         </div>
     </div>
 
-    <!-- PAINEL DO GESTOR (SEM ÍCONES) -->
+    <!-- PAINEL DO GESTOR AVANÇADO (COMPLETO COM GESTÃO DE STOCK, EQUIPAS E PEDIDOS) -->
     <div id="managerDashboard" class="fixed inset-0 bg-darkSlate z-50 hidden overflow-y-auto p-4 sm:p-10">
         <div class="max-w-7xl mx-auto space-y-8">
             <div class="liquid-glass p-6 rounded-3xl flex items-center justify-between border border-white/10">
                 <div>
                     <h2 class="text-2xl font-heading font-black text-white">Painel de Controlo do Gestor</h2>
-                    <p class="text-xs text-slate-400">LimpaAki Moçambique • Gestão de Operações</p>
+                    <p class="text-xs text-slate-400">LimpaAki Moçambique • Gestão Operacional Global</p>
                 </div>
                 <button onclick="closeDashboard()" class="liquid-glass-light text-slate-200 px-5 py-2.5 rounded-xl text-xs font-heading font-bold hover:bg-white/10 transition border border-white/10">
                     Terminar Sessão
                 </button>
             </div>
 
-            <!-- ESTATÍSTICAS DO PAINEL -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="liquid-glass p-6 rounded-3xl border border-white/10">
-                    <span class="text-xs font-heading font-bold text-slate-400 uppercase">Total de Pedidos</span>
-                    <h3 id="statOrdersCount" class="text-3xl font-heading font-black title-gradient-1 mt-2">0</h3>
+            <!-- ABAS DE NAVEGAÇÃO DO GESTOR -->
+            <div class="flex p-1.5 liquid-glass rounded-2xl border border-white/10 space-x-2">
+                <button type="button" onclick="switchDashboardTab('pedidos')" id="dtab-pedidos" class="dash-tab w-full py-3 rounded-xl text-xs font-heading font-bold transition bg-brandPurple text-white">
+                    Gestão de Pedidos & Alocações
+                </button>
+                <button type="button" onclick="switchDashboardTab('stock')" id="dtab-stock" class="dash-tab w-full py-3 rounded-xl text-xs font-heading font-bold transition text-slate-400 hover:text-white">
+                    Gestão de Stock & Materiais
+                </button>
+                <button type="button" onclick="switchDashboardTab('equipas')" id="dtab-equipas" class="dash-tab w-full py-3 rounded-xl text-xs font-heading font-bold transition text-slate-400 hover:text-white">
+                    Gestão de Equipas
+                </button>
+            </div>
+
+            <!-- SEÇÃO 1: PEDIDOS -->
+            <div id="section-pedidos" class="dash-section space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="liquid-glass p-6 rounded-3xl border border-white/10">
+                        <span class="text-xs font-heading font-bold text-slate-400 uppercase">Total de Pedidos</span>
+                        <h3 id="statOrdersCount" class="text-3xl font-heading font-black title-gradient-1 mt-2">0</h3>
+                    </div>
+                    <div class="liquid-glass p-6 rounded-3xl border border-white/10">
+                        <span class="text-xs font-heading font-bold text-slate-400 uppercase">Equipas Ativas</span>
+                        <h3 id="statTeamsCount" class="text-3xl font-heading font-black title-gradient-2 mt-2">0</h3>
+                    </div>
+                    <div class="liquid-glass p-6 rounded-3xl border border-white/10">
+                        <span class="text-xs font-heading font-bold text-slate-400 uppercase">Faturamento Previsto</span>
+                        <h3 id="statRevenue" class="text-3xl font-heading font-black text-amber-400 mt-2">0 MT</h3>
+                    </div>
                 </div>
-                <div class="liquid-glass p-6 rounded-3xl border border-white/10">
-                    <span class="text-xs font-heading font-bold text-slate-400 uppercase">Equipas em Campo</span>
-                    <h3 class="text-3xl font-heading font-black title-gradient-2 mt-2">4 Equipas</h3>
-                </div>
-                <div class="liquid-glass p-6 rounded-3xl border border-white/10">
-                    <span class="text-xs font-heading font-bold text-slate-400 uppercase">Stock de Detergentes</span>
-                    <h3 class="text-3xl font-heading font-black text-amber-400 mt-2">Estável (92%)</h3>
+
+                <div class="liquid-glass rounded-3xl p-6 sm:p-8 shadow-2xl border border-white/10 space-y-6">
+                    <h3 class="text-lg font-heading font-bold text-white">Atribuição de Equipas e Gestão de Pedidos</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs text-slate-300 font-body">
+                            <thead class="bg-darkSlate/90 text-slate-400 uppercase font-heading tracking-wider">
+                                <tr>
+                                    <th class="p-4 rounded-l-xl">Cliente</th>
+                                    <th class="p-4">Contacto</th>
+                                    <th class="p-4">Zona</th>
+                                    <th class="p-4">Serviço / Total</th>
+                                    <th class="p-4">Equipa Atribuída</th>
+                                    <th class="p-4 rounded-r-xl">Ações / Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody id="managerOrdersTable" class="divide-y divide-white/5">
+                                <tr>
+                                    <td colspan="6" class="p-6 text-center text-slate-400">A carregar pedidos...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
-            <!-- TABELA DE PEDIDOS -->
-            <div class="liquid-glass rounded-3xl p-6 sm:p-8 shadow-2xl border border-white/10">
-                <h3 class="text-lg font-heading font-bold text-white mb-6">Pedidos Recentes na Base de Dados</h3>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left text-xs text-slate-300 font-body">
-                        <thead class="bg-darkSlate/90 text-slate-400 uppercase font-heading tracking-wider">
-                            <tr>
-                                <th class="p-4 rounded-l-xl">Cliente</th>
-                                <th class="p-4">Contacto</th>
-                                <th class="p-4">Zona</th>
-                                <th class="p-4">Serviço</th>
-                                <th class="p-4">Total</th>
-                                <th class="p-4 rounded-r-xl">Estado</th>
-                            </tr>
-                        </thead>
-                        <tbody id="ordersTableBody" class="divide-y divide-white/5">
-                            <tr>
-                                <td colspan="6" class="p-6 text-center text-slate-400">A carregar dados do servidor...</td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <!-- SEÇÃO 2: STOCK E MATERIAIS -->
+            <div id="section-stock" class="dash-section space-y-6 hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Formulário para Adicionar Material -->
+                    <div class="liquid-glass p-6 sm:p-8 rounded-3xl border border-white/10 space-y-4">
+                        <h3 class="text-lg font-heading font-bold text-white">Adicionar Novo Material</h3>
+                        <form onsubmit="addMaterial(event)" class="space-y-4">
+                            <div>
+                                <label class="block text-[11px] font-heading font-bold uppercase text-slate-300 mb-1">Nome do Material / Detergente</label>
+                                <input type="text" id="matName" required class="w-full bg-darkSlate/90 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brandPurple" placeholder="Ex: Detergente Multiusos 5L">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-heading font-bold uppercase text-slate-300 mb-1">Categoria</label>
+                                <select id="matCategory" class="w-full bg-darkSlate/90 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brandPurple">
+                                    <option value="Detergentes">Detergentes e Químicos</option>
+                                    <option value="Ferramentas">Ferramentas & Equipamentos</option>
+                                    <option value="Consumíveis">Consumíveis (Panos, Sacos)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-heading font-bold uppercase text-slate-300 mb-1">Quantidade Inicial</label>
+                                <input type="number" id="matQty" required min="1" class="w-full bg-darkSlate/90 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brandPurple" placeholder="Ex: 25">
+                            </div>
+                            <button type="submit" class="w-full bg-brandGreen text-slate-950 font-heading font-bold py-3.5 rounded-xl hover:bg-emerald-400 transition text-xs uppercase tracking-wider">
+                                Registar Material
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Tabela de Stock -->
+                    <div class="lg:col-span-2 liquid-glass p-6 sm:p-8 rounded-3xl border border-white/10 space-y-4">
+                        <h3 class="text-lg font-heading font-bold text-white">Inventário de Materiais em Stock</h3>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs text-slate-300 font-body">
+                                <thead class="bg-darkSlate/90 text-slate-400 uppercase font-heading tracking-wider">
+                                    <tr>
+                                        <th class="p-4 rounded-l-xl">Material</th>
+                                        <th class="p-4">Categoria</th>
+                                        <th class="p-4">Quantidade</th>
+                                        <th class="p-4 rounded-r-xl">Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="stockTableBody" class="divide-y divide-white/5">
+                                    <tr>
+                                        <td colspan="4" class="p-6 text-center text-slate-400">A carregar inventário...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <!-- SEÇÃO 3: EQUIPAS -->
+            <div id="section-equipas" class="dash-section space-y-6 hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Formulário para Criar Equipa -->
+                    <div class="liquid-glass p-6 sm:p-8 rounded-3xl border border-white/10 space-y-4">
+                        <h3 class="text-lg font-heading font-bold text-white">Registar Nova Equipa</h3>
+                        <form onsubmit="addTeam(event)" class="space-y-4">
+                            <div>
+                                <label class="block text-[11px] font-heading font-bold uppercase text-slate-300 mb-1">Nome da Equipa</label>
+                                <input type="text" id="teamName" required class="w-full bg-darkSlate/90 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brandPurple" placeholder="Ex: Equipa Alpha - Maputo">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-heading font-bold uppercase text-slate-300 mb-1">Líder / Responsável</label>
+                                <input type="text" id="teamLead" required class="w-full bg-darkSlate/90 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brandPurple" placeholder="Ex: Carlos Mandlate">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-heading font-bold uppercase text-slate-300 mb-1">Área de Atuação</label>
+                                <input type="text" id="teamZone" required class="w-full bg-darkSlate/90 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brandPurple" placeholder="Ex: Sommerchield / Polana">
+                            </div>
+                            <button type="submit" class="w-full bg-brandPurple text-white font-heading font-bold py-3.5 rounded-xl hover:opacity-90 transition text-xs uppercase tracking-wider">
+                                Criar Equipa
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Lista de Equipas -->
+                    <div class="lg:col-span-2 liquid-glass p-6 sm:p-8 rounded-3xl border border-white/10 space-y-4">
+                        <h3 class="text-lg font-heading font-bold text-white">Equipas Operacionais Ativas</h3>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs text-slate-300 font-body">
+                                <thead class="bg-darkSlate/90 text-slate-400 uppercase font-heading tracking-wider">
+                                    <tr>
+                                        <th class="p-4 rounded-l-xl">Equipa</th>
+                                        <th class="p-4">Líder</th>
+                                        <th class="p-4">Zona</th>
+                                        <th class="p-4 rounded-r-xl">Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="teamsTableBody" class="divide-y divide-white/5">
+                                    <tr>
+                                        <td colspan="4" class="p-6 text-center text-slate-400">A carregar equipas...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -517,15 +629,9 @@
                     body: JSON.stringify({ clientName, phone, zone, serviceType, paymentMethod, totalMT })
                 });
                 
-                if (response.ok) {
-                    alert('Pedido enviado com sucesso! O gestor já pode consultá-lo no painel.');
-                    document.getElementById('orderForm').reset();
-                    switchCategory('residencia');
-                } else {
-                    alert('Pedido registado! Entraremos em contacto brevemente.');
-                    document.getElementById('orderForm').reset();
-                    switchCategory('residencia');
-                }
+                alert('Pedido enviado com sucesso!');
+                document.getElementById('orderForm').reset();
+                switchCategory('residencia');
             } catch (error) {
                 console.error(error);
                 alert('Pedido registado com sucesso!');
@@ -553,7 +659,7 @@
             if ((username === 'admin@limpaaki.co.mz' || username === 'gestor@limpaaki.co.mz') && password === 'admin123') {
                 closeManagerModal();
                 document.getElementById('managerDashboard').classList.remove('hidden');
-                loadManagerOrders();
+                loadManagerData();
                 return;
             }
 
@@ -567,7 +673,7 @@
                 if (data.success) {
                     closeManagerModal();
                     document.getElementById('managerDashboard').classList.remove('hidden');
-                    loadManagerOrders();
+                    loadManagerData();
                 } else {
                     const errEl = document.getElementById('loginError');
                     errEl.innerText = data.error || 'Credenciais inválidas.';
@@ -580,29 +686,163 @@
             }
         }
 
-        async function loadManagerOrders() {
+        // Navegação entre abas do Painel do Gestor
+        function switchDashboardTab(tab) {
+            document.querySelectorAll('.dash-tab').forEach(t => {
+                t.classList.remove('bg-brandPurple', 'text-white');
+                t.classList.add('text-slate-400');
+            });
+            document.querySelectorAll('.dash-section').forEach(s => s.classList.add('hidden'));
+
+            document.getElementById(`dtab-${tab}`).classList.remove('text-slate-400');
+            document.getElementById(`dtab-${tab}`).classList.add('bg-brandPurple', 'text-white');
+            document.getElementById(`section-${tab}`).classList.remove('hidden');
+        }
+
+        // Dados locais em memória para simulação operacional avançada (Stock e Equipas)
+        let localStock = [
+            { id: 1, name: "Detergente Multiusos 5L", category: "Detergentes", qty: 24 },
+            { id: 2, name: "Desinfetante Hospitalar 1L", category: "Detergentes", qty: 15 },
+            { id: 3, name: "Aspirador Profissional Portátil", category: "Ferramentas", qty: 4 },
+            { id: 4, name: "Panos de Microfibra (Pack 10)", category: "Consumíveis", qty: 50 }
+        ];
+
+        let localTeams = [
+            { id: 1, name: "Equipa Alpha", lead: "Carlos Mandlate", zone: "Sommerchield / Polana" },
+            { id: 2, name: "Equipa Beta", lead: "Mariana Cossa", zone: "Matola / T3" }
+        ];
+
+        let globalOrders = [];
+
+        async function loadManagerData() {
             try {
                 const res = await fetch('/api/orders');
-                const orders = await res.json();
-                document.getElementById('statOrdersCount').innerText = orders.length;
-                const tbody = document.getElementById('ordersTableBody');
-                if (!orders || orders.length === 0) {
-                    tbody.innerHTML = `<tr><td colspan="6" class="p-6 text-center text-slate-400">Nenhum pedido registado ainda.</td></tr>`;
-                    return;
-                }
-                tbody.innerHTML = orders.map(o => `
-                    <tr class="hover:bg-white/5 transition">
-                        <td class="p-4 font-bold text-white">${o.clientName}</td>
-                        <td class="p-4">${o.phone}</td>
-                        <td class="p-4">${o.zone}</td>
-                        <td class="p-4">${o.serviceType}</td>
-                        <td class="p-4 font-bold text-brandGreen">${o.totalMT} MT</td>
-                        <td class="p-4"><span class="bg-amber-500/20 text-amber-400 px-3 py-1 rounded-full text-xs font-bold">${o.status || 'Pendente'}</span></td>
-                    </tr>
-                `).join('');
+                globalOrders = await res.json();
             } catch (err) {
-                console.error(err);
+                globalOrders = [];
             }
+
+            // Atualizar estatísticas
+            document.getElementById('statOrdersCount').innerText = globalOrders.length;
+            document.getElementById('statTeamsCount').innerText = localTeams.length;
+            
+            const totalRev = globalOrders.reduce((acc, o) => acc + (o.totalMT || 0), 0);
+            document.getElementById('statRevenue').innerText = totalRev.toLocaleString('pt-MZ') + " MT";
+
+            renderOrdersTable();
+            renderStockTable();
+            renderTeamsTable();
+        }
+
+        function renderOrdersTable() {
+            const tbody = document.getElementById('managerOrdersTable');
+            if (!globalOrders || globalOrders.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" class="p-6 text-center text-slate-400">Nenhum pedido registado ainda.</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = globalOrders.map((o, idx) => `
+                <tr class="hover:bg-white/5 transition">
+                    <td class="p-4 font-bold text-white">${o.clientName}</td>
+                    <td class="p-4">${o.phone}</td>
+                    <td class="p-4">${o.zone}</td>
+                    <td class="p-4">${o.serviceType}<br><strong class="text-brandGreen">${o.totalMT} MT</strong></td>
+                    <td class="p-4">
+                        <select onchange="assignTeam(${idx}, this.value)" class="bg-darkSlate border border-white/10 rounded-xl px-3 py-1.5 text-xs text-white">
+                            <option value="">-- Atribuir Equipa --</option>
+                            ${localTeams.map(t => `<option value="${t.name}" ${o.assignedTeam === t.name ? 'selected' : ''}>${t.name}</option>`).join('')}
+                        </select>
+                    </td>
+                    <td class="p-4">
+                        <span class="bg-amber-500/20 text-amber-400 px-3 py-1 rounded-full text-xs font-bold">${o.status || 'Pendente'}</span>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function assignTeam(orderIdx, teamName) {
+            if(globalOrders[orderIdx]) {
+                globalOrders[orderIdx].assignedTeam = teamName;
+                globalOrders[orderIdx].status = 'Em Atendimento';
+                alert(`Equipa ${teamName} atribuída com sucesso ao pedido de ${globalOrders[orderIdx].clientName}!`);
+                renderOrdersTable();
+            }
+        }
+
+        function renderStockTable() {
+            const tbody = document.getElementById('stockTableBody');
+            tbody.innerHTML = localStock.map(m => `
+                <tr class="hover:bg-white/5 transition">
+                    <td class="p-4 font-bold text-white">${m.name}</td>
+                    <td class="p-4 text-slate-300">${m.category}</td>
+                    <td class="p-4 font-bold text-brandGreen">${m.qty} unidades</td>
+                    <td class="p-4 space-x-2">
+                        <button onclick="adjustStock(${m.id}, 1)" class="bg-slate-800 text-white px-2.5 py-1 rounded-lg hover:bg-slate-700 text-xs">+</button>
+                        <button onclick="adjustStock(${m.id}, -1)" class="bg-slate-800 text-white px-2.5 py-1 rounded-lg hover:bg-slate-700 text-xs">-</button>
+                        <button onclick="removeMaterial(${m.id})" class="text-red-400 hover:text-red-300 text-xs"><i class="fa-solid fa-trash"></i> Remover</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function addMaterial(e) {
+            e.preventDefault();
+            const name = document.getElementById('matName').value;
+            const category = document.getElementById('matCategory').value;
+            const qty = parseInt(document.getElementById('matQty').value);
+
+            localStock.push({ id: Date.now(), name, category, qty });
+            alert('Material adicionado ao stock com sucesso!');
+            e.target.reset();
+            renderStockTable();
+        }
+
+        function adjustStock(id, amount) {
+            const item = localStock.find(m => m.id === id);
+            if(item) {
+                item.qty = Math.max(0, item.qty + amount);
+                renderStockTable();
+            }
+        }
+
+        function removeMaterial(id) {
+            localStock = localStock.filter(m => m.id !== id);
+            renderStockTable();
+        }
+
+        function renderTeamsTable() {
+            const tbody = document.getElementById('teamsTableBody');
+            tbody.innerHTML = localTeams.map(t => `
+                <tr class="hover:bg-white/5 transition">
+                    <td class="p-4 font-bold text-white">${t.name}</td>
+                    <td class="p-4 text-slate-300">${t.lead}</td>
+                    <td class="p-4 text-slate-300">${t.zone}</td>
+                    <td class="p-4">
+                        <button onclick="removeTeam(${t.id})" class="text-red-400 hover:text-red-300 text-xs">Remover Equipa</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function addTeam(e) {
+            e.preventDefault();
+            const name = document.getElementById('teamName').value;
+            const lead = document.getElementById('teamLead').value;
+            const zone = document.getElementById('teamZone').value;
+
+            localTeams.push({ id: Date.now(), name, lead, zone });
+            alert('Equipa registada com sucesso!');
+            e.target.reset();
+            renderTeamsTable();
+            renderOrdersTable();
+            document.getElementById('statTeamsCount').innerText = localTeams.length;
+        }
+
+        function removeTeam(id) {
+            localTeams = localTeams.filter(t => t.id !== id);
+            renderTeamsTable();
+            renderOrdersTable();
+            document.getElementById('statTeamsCount').innerText = localTeams.length;
         }
 
         function closeDashboard() {

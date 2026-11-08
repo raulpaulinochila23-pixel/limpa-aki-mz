@@ -75,7 +75,7 @@
                 <a href="#about" class="hover:text-brandGreen transition">Quem Somos</a>
             </nav>
             <div class="flex items-center space-x-4">
-                <button onclick="openManagerModal()" class="flex items-center space-x-2 bg-slate-900/80 border border-white/10 hover:border-brandGreen text-slate-200 px-4 py-2.5 rounded-xl text-xs font-bold transition shadow-md">
+                <button onclick="openManagerModal()" class="flex items-center space-x-2 bg-slate-900/80 border border-white/10 hover:border-brandGreen text-slate-200 px-4 py-2.5 rounded-xl text-xs font-bold transition shadow-md cursor-pointer">
                     <span>Gestor</span>
                 </button>
             </div>
@@ -91,7 +91,7 @@
             <div class="lg:col-span-7 space-y-6 text-left">
                 <span class="inline-flex items-center space-x-2 bg-white/5 border border-white/10 text-brandGreen px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide">
                     <span class="w-2 h-2 rounded-full bg-brandGreen animate-pulse"></span>
-                    <span>Serviço em Maputo & Matola</span>
+                    <span>Serviçomem Maputo & Matola</span>
                 </span>
 
                 <h2 class="text-4xl sm:text-6xl lg:text-7xl font-heading font-black tracking-tight leading-[1.05] text-white">
@@ -196,8 +196,8 @@
                             <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-brandGreen"></i><span>Flexibilidade de horários para empresas</span></li>
                         </ul>
                     </div>
-                    <a href="#simulador" onclick="switchCategory('obras')" class="w-full bg-gradient-to-r from-brandPurple to-indigo-600 hover:opacity-90 text-white font-heading font-bold py-4 text-center rounded-2xl text-xs transition shadow-lg shadow-indigo-500/20">
-                        Selecionar Obras / Empresas
+                    <a href="#simulador" onclick="switchCategory('empresas')" class="w-full bg-gradient-to-r from-brandPurple to-indigo-600 hover:opacity-90 text-white font-heading font-bold py-4 text-center rounded-2xl text-xs transition shadow-lg shadow-indigo-500/20">
+                        Selecionar Empresas / Obras
                     </a>
                 </div>
             </div>
@@ -235,14 +235,15 @@
                     <p class="text-xs text-slate-300">Preencha os dados abaixo e envie o pedido diretamente para o painel de gestão.</p>
                 </div>
 
+                <!-- ABAS DE NAVEGAÇÃO DO SIMULADOR -->
                 <div class="flex justify-center p-1.5 bg-darkSlate/80 rounded-2xl border border-white/10 space-x-2">
-                    <button type="button" onclick="switchCategory('residencia')" id="tab-residencia" class="category-tab w-full py-2.5 rounded-xl text-xs font-heading font-bold transition bg-brandPurple text-white">
+                    <button type="button" onclick="switchCategory('residencia')" id="tab-residencia" class="category-tab w-full py-2.5 rounded-xl text-xs font-heading font-bold transition bg-brandPurple text-white cursor-pointer">
                         Residência
                     </button>
-                    <button type="button" onclick="switchCategory('obras')" id="tab-obras" class="category-tab w-full py-2.5 rounded-xl text-xs font-heading font-bold transition text-slate-400 hover:text-white">
+                    <button type="button" onclick="switchCategory('obras')" id="tab-obras" class="category-tab w-full py-2.5 rounded-xl text-xs font-heading font-bold transition text-slate-400 hover:text-white cursor-pointer">
                         Pós-Obras
                     </button>
-                    <button type="button" onclick="switchCategory('empresas')" id="tab-empresas" class="category-tab w-full py-2.5 rounded-xl text-xs font-heading font-bold transition text-slate-400 hover:text-white">
+                    <button type="button" onclick="switchCategory('empresas')" id="tab-empresas" class="category-tab w-full py-2.5 rounded-xl text-xs font-heading font-bold transition text-slate-400 hover:text-white cursor-pointer">
                         Empresas
                     </button>
                 </div>
@@ -259,6 +260,12 @@
                         </div>
                     </div>
 
+                    <!-- CAMPO DINÂMICO PARA NOME DA EMPRESA (APARECE APENAS NA ABA EMPRESAS) -->
+                    <div id="companyFieldContainer" class="hidden">
+                        <label class="block text-[11px] font-heading font-bold uppercase text-slate-300 mb-1.5">Nome da Empresa</label>
+                        <input type="text" id="companyName" class="w-full bg-darkSlate/90 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brandPurple" placeholder="Ex: LimpaAki Lda / TechCorp">
+                    </div>
+
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                             <label class="block text-[11px] font-heading font-bold uppercase text-slate-300 mb-1.5">Zona / Bairro</label>
@@ -273,7 +280,7 @@
                         <div>
                             <label class="block text-[11px] font-heading font-bold uppercase text-slate-300 mb-1.5">Opção de Serviço</label>
                             <select id="serviceType" onchange="calculateTotal()" class="w-full bg-darkSlate/90 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brandPurple">
-                                <!-- Preenchido via JS -->
+                                <!-- Preenchido dinamicamente via JS -->
                             </select>
                         </div>
                     </div>
@@ -283,23 +290,19 @@
                         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
                             <label class="liquid-glass-light p-2.5 rounded-xl flex items-center space-x-2 cursor-pointer hover:border-brandGreen transition">
                                 <input type="radio" name="paymentMethod" value="M-Pesa" checked class="accent-brandGreen">
-                                <img src="images/mpesa.png" alt="M-Pesa" class="h-5 object-contain">
-                                <span class="text-[11px] font-semibold">M-Pesa</span>
+                                <span class="text-[11px] font-semibold text-slate-200">M-Pesa</span>
                             </label>
                             <label class="liquid-glass-light p-2.5 rounded-xl flex items-center space-x-2 cursor-pointer hover:border-brandGreen transition">
                                 <input type="radio" name="paymentMethod" value="e-Mola" class="accent-brandGreen">
-                                <img src="images/emola.png" alt="e-Mola" class="h-5 object-contain">
-                                <span class="text-[11px] font-semibold">e-Mola</span>
+                                <span class="text-[11px] font-semibold text-slate-200">e-Mola</span>
                             </label>
                             <label class="liquid-glass-light p-2.5 rounded-xl flex items-center space-x-2 cursor-pointer hover:border-brandGreen transition">
                                 <input type="radio" name="paymentMethod" value="BCI" class="accent-brandGreen">
-                                <img src="images/bci.png" alt="BCI" class="h-5 object-contain">
-                                <span class="text-[11px] font-semibold">BCI</span>
+                                <span class="text-[11px] font-semibold text-slate-200">BCI</span>
                             </label>
                             <label class="liquid-glass-light p-2.5 rounded-xl flex items-center space-x-2 cursor-pointer hover:border-brandGreen transition">
                                 <input type="radio" name="paymentMethod" value="BIM" class="accent-brandGreen">
-                                <img src="images/bim.png" alt="BIM" class="h-5 object-contain">
-                                <span class="text-[11px] font-semibold">BIM</span>
+                                <span class="text-[11px] font-semibold text-slate-200">BIM</span>
                             </label>
                         </div>
                     </div>
@@ -315,7 +318,7 @@
                         </div>
                     </div>
 
-                    <button type="submit" id="submitBtn" class="w-full bg-brandGreen hover:bg-emerald-400 text-slate-950 font-heading font-black py-4 rounded-xl transition shadow-lg shadow-emerald-500/20 text-xs tracking-wider uppercase flex items-center justify-center space-x-2">
+                    <button type="submit" id="submitBtn" class="w-full bg-brandGreen hover:bg-emerald-400 text-slate-950 font-heading font-black py-4 rounded-xl transition shadow-lg shadow-emerald-500/20 text-xs tracking-wider uppercase flex items-center justify-center space-x-2 cursor-pointer">
                         <span>Confirmar e Enviar Pedido</span>
                     </button>
                 </form>
@@ -357,7 +360,7 @@
     <!-- MODAL DE LOGIN DO GESTOR -->
     <div id="managerModal" class="fixed inset-0 bg-darkSlate/90 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
         <div class="liquid-glass border border-white/10 rounded-3xl max-w-md w-full p-8 shadow-2xl relative">
-            <button onclick="closeManagerModal()" class="absolute top-6 right-6 text-slate-400 hover:text-white">
+            <button onclick="closeManagerModal()" class="absolute top-6 right-6 text-slate-400 hover:text-white cursor-pointer">
                 <i class="fa-solid fa-xmark text-lg"></i>
             </button>
             <div class="text-center mb-6 space-y-1">
@@ -374,37 +377,36 @@
                     <input type="password" id="adminPass" required class="w-full bg-darkSlate/90 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-brandPurple" placeholder="••••••••">
                 </div>
                 <div id="loginError" class="text-xs text-red-400 font-medium hidden"></div>
-                <button type="submit" class="w-full bg-brandGreen text-slate-950 font-heading font-bold py-3.5 rounded-xl hover:bg-emerald-400 transition shadow-md text-xs uppercase tracking-wider">
+                <button type="submit" class="w-full bg-brandGreen text-slate-950 font-heading font-bold py-3.5 rounded-xl hover:bg-emerald-400 transition shadow-md text-xs uppercase tracking-wider cursor-pointer">
                     Entrar no Painel
                 </button>
             </form>
         </div>
     </div>
 
-    <!-- PAINEL DO GESTOR (TEMA MAIS CLARO, LIMPO E INTUITIVO - FUNDO SLATE CLARO) -->
+    <!-- PAINEL DO GESTOR -->
     <div id="managerDashboard" class="fixed inset-0 bg-slate-900 z-50 hidden overflow-y-auto p-4 sm:p-8">
         <div class="max-w-7xl mx-auto space-y-6">
             
-            <!-- Barra Superior do Painel -->
             <div class="bg-slate-800 border border-slate-700 p-6 rounded-3xl flex items-center justify-between shadow-xl">
                 <div>
                     <h2 class="text-2xl font-heading font-black text-white">Painel de Controlo do Gestor</h2>
                     <p class="text-xs text-slate-300">LimpaAki Moçambique • Gestão Operacional Global</p>
                 </div>
-                <button onclick="closeDashboard()" class="bg-slate-700 hover:bg-slate-600 text-slate-200 px-5 py-2.5 rounded-xl text-xs font-heading font-bold transition border border-slate-600">
+                <button onclick="closeDashboard()" class="bg-slate-700 hover:bg-slate-600 text-slate-200 px-5 py-2.5 rounded-xl text-xs font-heading font-bold transition border border-slate-600 cursor-pointer">
                     Terminar Sessão
                 </button>
             </div>
 
-            <!-- ABAS DE NAVEGAÇÃO DO PAINEL -->
+            <!-- ABAS DO PAINEL DO GESTOR -->
             <div class="flex p-1.5 bg-slate-800 rounded-2xl border border-slate-700 space-x-2">
-                <button type="button" onclick="switchDashboardTab('pedidos')" id="dtab-pedidos" class="dash-tab w-full py-3 rounded-xl text-xs font-heading font-bold transition bg-emerald-600 text-white shadow">
+                <button type="button" onclick="switchDashboardTab('pedidos')" id="dtab-pedidos" class="dash-tab w-full py-3 rounded-xl text-xs font-heading font-bold transition bg-emerald-600 text-white shadow cursor-pointer">
                     Gestão de Pedidos & Alocações
                 </button>
-                <button type="button" onclick="switchDashboardTab('stock')" id="dtab-stock" class="dash-tab w-full py-3 rounded-xl text-xs font-heading font-bold transition text-slate-300 hover:text-white">
+                <button type="button" onclick="switchDashboardTab('stock')" id="dtab-stock" class="dash-tab w-full py-3 rounded-xl text-xs font-heading font-bold transition text-slate-300 hover:text-white cursor-pointer">
                     Gestão de Stock & Materiais
                 </button>
-                <button type="button" onclick="switchDashboardTab('equipas')" id="dtab-equipas" class="dash-tab w-full py-3 rounded-xl text-xs font-heading font-bold transition text-slate-300 hover:text-white">
+                <button type="button" onclick="switchDashboardTab('equipas')" id="dtab-equipas" class="dash-tab w-full py-3 rounded-xl text-xs font-heading font-bold transition text-slate-300 hover:text-white cursor-pointer">
                     Gestão de Equipas
                 </button>
             </div>
@@ -435,7 +437,7 @@
                         <table class="w-full text-left text-xs text-slate-200 font-body">
                             <thead class="bg-slate-900/80 text-slate-400 uppercase font-heading tracking-wider">
                                 <tr>
-                                    <th class="p-4 rounded-l-xl">Cliente</th>
+                                    <th class="p-4 rounded-l-xl">Cliente / Empresa</th>
                                     <th class="p-4">Contacto</th>
                                     <th class="p-4">Zona</th>
                                     <th class="p-4">Serviço / Total</th>
@@ -475,7 +477,7 @@
                                 <label class="block text-[11px] font-heading font-bold uppercase text-slate-300 mb-1">Quantidade Inicial</label>
                                 <input type="number" id="matQty" required min="1" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-emerald-500" placeholder="Ex: 25">
                             </div>
-                            <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-heading font-bold py-3.5 rounded-xl transition text-xs uppercase tracking-wider shadow">
+                            <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-heading font-bold py-3.5 rounded-xl transition text-xs uppercase tracking-wider shadow cursor-pointer">
                                 Registar Material
                             </button>
                         </form>
@@ -522,7 +524,7 @@
                                 <label class="block text-[11px] font-heading font-bold uppercase text-slate-300 mb-1">Área de Atuação</label>
                                 <input type="text" id="teamZone" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-indigo-500" placeholder="Ex: Sommerchield / Polana">
                             </div>
-                            <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-heading font-bold py-3.5 rounded-xl transition text-xs uppercase tracking-wider shadow">
+                            <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-heading font-bold py-3.5 rounded-xl transition text-xs uppercase tracking-wider shadow cursor-pointer">
                                 Criar Equipa
                             </button>
                         </form>
@@ -583,37 +585,56 @@
                 activeTab.classList.add('bg-brandPurple', 'text-white');
             }
 
+            // Mostrar ou ocultar o campo do nome da empresa se for a categoria empresas
+            const companyFieldContainer = document.getElementById('companyFieldContainer');
+            const companyNameInput = document.getElementById('companyName');
+            if (category === 'empresas') {
+                companyFieldContainer.classList.remove('hidden');
+                companyNameInput.required = true;
+            } else {
+                companyFieldContainer.classList.add('hidden');
+                companyNameInput.required = false;
+                companyNameInput.value = '';
+            }
+
             const select = document.getElementById('serviceType');
-            select.innerHTML = '';
-            serviceOptions[category].forEach(opt => {
-                const el = document.createElement('option');
-                el.value = opt.value;
-                el.textContent = opt.text;
-                select.appendChild(el);
-            });
+            if (select && serviceOptions[category]) {
+                select.innerHTML = '';
+                serviceOptions[category].forEach(opt => {
+                    const el = document.createElement('option');
+                    el.value = opt.value;
+                    el.textContent = opt.text;
+                    select.appendChild(el);
+                });
+            }
             calculateTotal();
         }
 
         function calculateTotal() {
-            const service = document.getElementById('serviceType').value;
+            const serviceSelect = document.getElementById('serviceType');
+            if (!serviceSelect) return;
+            const service = serviceSelect.value;
             let price = "2.500 MT";
             const match = service.match(/\((\d+)\s*MT\)/);
             if (match) {
                 const num = parseInt(match[1]);
                 price = num.toLocaleString('pt-MZ') + " MT";
             }
-            document.getElementById('totalDisplay').innerText = price;
+            const totalDisplay = document.getElementById('totalDisplay');
+            if (totalDisplay) {
+                totalDisplay.innerText = price;
+            }
         }
 
         window.addEventListener('DOMContentLoaded', () => {
             switchCategory('residencia');
         });
 
-        // Pedidos predefinidos por default para sincronizar o painel do gestor logo no arranque
+        // Pedidos predefinidos por default sincronizados com o painel do gestor
         let globalOrders = [
-            { clientName: "Jemisse Macuacua", phone: "+258 84 111 2233", zone: "Sommerchield / Polana", serviceType: "Limpeza Profunda / Pesada (4500 MT)", totalMT: 4500, assignedTeam: "Equipa Alpha", status: "Em Atendimento" },
-            { clientName: "António Macave", phone: "+258 82 444 5566", zone: "Matola / T3", serviceType: "Limpeza Pós-Obra Básica (8000 MT)", totalMT: 8000, assignedTeam: "Equipa Beta", status: "Pendente" },
-            { clientName: "Mário Nhantumbo", phone: "+258 87 777 8899", zone: "Costa do Sol / Triunfo", serviceType: "Limpeza Residencial Padrão (2500 MT)", totalMT: 2500, assignedTeam: "", status: "Pendente" }
+            { clientName: "Paulo Cossa", companyName: "", phone: "+258 84 111 2233", zone: "Sommerchield / Polana", serviceType: "Limpeza Profunda / Pesada (4500 MT)", totalMT: 4500, assignedTeam: "Equipa Alpha", status: "Em Atendimento" },
+            { clientName: "Jonas Silva", companyName: "TechCorp Lda", phone: "+258 82 444 5566", zone: "Matola / T3", serviceType: "Limpeza de Escritórios (6000 MT)", totalMT: 6000, assignedTeam: "Equipa Beta", status: "Em Atendimento" },
+            { clientName: "Ana Eduardo", companyName: "", phone: "+258 87 777 8899", zone: "Costa do Sol / Triunfo", serviceType: "Limpeza Residencial Padrão (2500 MT)", totalMT: 2500, assignedTeam: "", status: "Pendente" }
         ];
 
         async function submitOrder(e) {
@@ -623,6 +644,7 @@
             submitBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin mr-2"></i><span>A enviar pedido...</span>`;
 
             const clientName = document.getElementById('clientName').value;
+            const companyName = document.getElementById('companyName').value || '';
             const phone = document.getElementById('phone').value;
             const zone = document.getElementById('zone').value;
             const serviceType = document.getElementById('serviceType').value;
@@ -632,6 +654,7 @@
 
             const newOrder = {
                 clientName,
+                companyName,
                 phone,
                 zone,
                 serviceType,
@@ -641,7 +664,6 @@
                 status: "Pendente"
             };
 
-            // Adicionar à lista local sincronizada com o painel do gestor
             globalOrders.unshift(newOrder);
 
             try {
@@ -663,11 +685,13 @@
         }
 
         function openManagerModal() {
-            document.getElementById('managerModal').classList.remove('hidden');
+            const modal = document.getElementById('managerModal');
+            if(modal) modal.classList.remove('hidden');
         }
 
         function closeManagerModal() {
-            document.getElementById('managerModal').classList.add('hidden');
+            const modal = document.getElementById('managerModal');
+            if(modal) modal.classList.add('hidden');
         }
 
         async function handleManagerLogin(e) {
@@ -699,7 +723,7 @@
                     errEl.classList.remove('hidden');
                 }
             } catch (err) {
-                // Fallback de login bem-sucedido para demonstração direta
+                // Fallback para login de demonstração
                 closeManagerModal();
                 document.getElementById('managerDashboard').classList.remove('hidden');
                 loadManagerData();
@@ -713,9 +737,15 @@
             });
             document.querySelectorAll('.dash-section').forEach(s => s.classList.add('hidden'));
 
-            document.getElementById(`dtab-${tab}`).classList.remove('text-slate-300');
-            document.getElementById(`dtab-${tab}`).classList.add('bg-emerald-600', 'text-white', 'shadow');
-            document.getElementById(`section-${tab}`).classList.remove('hidden');
+            const activeTab = document.getElementById(`dtab-${tab}`);
+            const activeSection = document.getElementById(`section-${tab}`);
+            if(activeTab) {
+                activeTab.classList.remove('text-slate-300');
+                activeTab.classList.add('bg-emerald-600', 'text-white', 'shadow');
+            }
+            if(activeSection) {
+                activeSection.classList.remove('hidden');
+            }
         }
 
         let localStock = [
@@ -735,7 +765,6 @@
                 const res = await fetch('/api/orders');
                 const serverOrders = await res.json();
                 if (serverOrders && serverOrders.length > 0) {
-                    // Mesclar com os pedidos do servidor se houver
                     serverOrders.forEach(so => {
                         if (!globalOrders.some(o => o.clientName === so.clientName && o.phone === so.phone)) {
                             globalOrders.push(so);
@@ -746,11 +775,15 @@
                 console.log('A utilizar lista sincronizada padrão.');
             }
 
-            document.getElementById('statOrdersCount').innerText = globalOrders.length;
-            document.getElementById('statTeamsCount').innerText = localTeams.length;
+            const statOrdersCount = document.getElementById('statOrdersCount');
+            const statTeamsCount = document.getElementById('statTeamsCount');
+            const statRevenue = document.getElementById('statRevenue');
+
+            if(statOrdersCount) statOrdersCount.innerText = globalOrders.length;
+            if(statTeamsCount) statTeamsCount.innerText = localTeams.length;
             
             const totalRev = globalOrders.reduce((acc, o) => acc + (o.totalMT || 0), 0);
-            document.getElementById('statRevenue').innerText = totalRev.toLocaleString('pt-MZ') + " MT";
+            if(statRevenue) statRevenue.innerText = totalRev.toLocaleString('pt-MZ') + " MT";
 
             renderOrdersTable();
             renderStockTable();
@@ -759,6 +792,7 @@
 
         function renderOrdersTable() {
             const tbody = document.getElementById('managerOrdersTable');
+            if(!tbody) return;
             if (!globalOrders || globalOrders.length === 0) {
                 tbody.innerHTML = `<tr><td colspan="6" class="p-6 text-center text-slate-400">Nenhum pedido registado ainda.</td></tr>`;
                 return;
@@ -766,7 +800,10 @@
 
             tbody.innerHTML = globalOrders.map((o, idx) => `
                 <tr class="hover:bg-slate-700/50 transition">
-                    <td class="p-4 font-bold text-white">${o.clientName}</td>
+                    <td class="p-4 font-bold text-white">
+                        ${o.clientName}
+                        ${o.companyName ? `<br><span class="text-[10px] text-indigo-300 font-semibold">Empresa: ${o.companyName}</span>` : ''}
+                    </td>
                     <td class="p-4 text-slate-300">${o.phone}</td>
                     <td class="p-4 text-slate-300">${o.zone}</td>
                     <td class="p-4 text-slate-300">${o.serviceType}<br><strong class="text-emerald-400">${o.totalMT} MT</strong></td>
@@ -794,15 +831,16 @@
 
         function renderStockTable() {
             const tbody = document.getElementById('stockTableBody');
+            if(!tbody) return;
             tbody.innerHTML = localStock.map(m => `
                 <tr class="hover:bg-slate-700/50 transition">
                     <td class="p-4 font-bold text-white">${m.name}</td>
                     <td class="p-4 text-slate-300">${m.category}</td>
                     <td class="p-4 font-bold text-emerald-400">${m.qty} unidades</td>
                     <td class="p-4 space-x-2">
-                        <button onclick="adjustStock(${m.id}, 1)" class="bg-slate-700 text-white px-2.5 py-1 rounded-lg hover:bg-slate-600 text-xs">+</button>
-                        <button onclick="adjustStock(${m.id}, -1)" class="bg-slate-700 text-white px-2.5 py-1 rounded-lg hover:bg-slate-600 text-xs">-</button>
-                        <button onclick="removeMaterial(${m.id})" class="text-red-400 hover:text-red-300 text-xs font-semibold ml-2">Remover</button>
+                        <button onclick="adjustStock(${m.id}, 1)" class="bg-slate-700 text-white px-2.5 py-1 rounded-lg hover:bg-slate-600 text-xs cursor-pointer">+</button>
+                        <button onclick="adjustStock(${m.id}, -1)" class="bg-slate-700 text-white px-2.5 py-1 rounded-lg hover:bg-slate-600 text-xs cursor-pointer">-</button>
+                        <button onclick="removeMaterial(${m.id})" class="text-red-400 hover:text-red-300 text-xs font-semibold ml-2 cursor-pointer">Remover</button>
                     </td>
                 </tr>
             `).join('');
@@ -835,13 +873,14 @@
 
         function renderTeamsTable() {
             const tbody = document.getElementById('teamsTableBody');
+            if(!tbody) return;
             tbody.innerHTML = localTeams.map(t => `
                 <tr class="hover:bg-slate-700/50 transition">
                     <td class="p-4 font-bold text-white">${t.name}</td>
                     <td class="p-4 text-slate-300">${t.lead}</td>
                     <td class="p-4 text-slate-300">${t.zone}</td>
                     <td class="p-4">
-                        <button onclick="removeTeam(${t.id})" class="text-red-400 hover:text-red-300 text-xs font-semibold">Remover Equipa</button>
+                        <button onclick="removeTeam(${t.id})" class="text-red-400 hover:text-red-300 text-xs font-semibold cursor-pointer">Remover Equipa</button>
                     </td>
                 </tr>
             `).join('');
@@ -850,7 +889,7 @@
         function addTeam(e) {
             e.preventDefault();
             const name = document.getElementById('teamName').value;
-            const lead = document.getElementById('teamLead'].value;
+            const lead = document.getElementById('teamLead').value;
             const zone = document.getElementById('teamZone').value;
 
             localTeams.push({ id: Date.now(), name, lead, zone });
@@ -858,18 +897,21 @@
             e.target.reset();
             renderTeamsTable();
             renderOrdersTable();
-            document.getElementById('statTeamsCount').innerText = localTeams.length;
+            const statTeamsCount = document.getElementById('statTeamsCount');
+            if(statTeamsCount) statTeamsCount.innerText = localTeams.length;
         }
 
         function removeTeam(id) {
             localTeams = localTeams.filter(t => t.id !== id);
             renderTeamsTable();
             renderOrdersTable();
-            document.getElementById('statTeamsCount').innerText = localTeams.length;
+            const statTeamsCount = document.getElementById('statTeamsCount');
+            if(statTeamsCount) statTeamsCount.innerText = localTeams.length;
         }
 
         function closeDashboard() {
-            document.getElementById('managerDashboard').classList.add('hidden');
+            const dashboard = document.getElementById('managerDashboard');
+            if(dashboard) dashboard.classList.add('hidden');
         }
     </script>
 </body>

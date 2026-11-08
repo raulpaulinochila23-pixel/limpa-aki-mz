@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,7 +23,7 @@
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-brandGreen selection:text-slate-900">
 
-    <!-- HEADER / NAVBAR STICKY -->
+    <!-- HEADER / NAVBAR -->
     <header class="bg-slate-900/80 backdrop-blur-md border-b border-slate-800 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <div class="flex items-center space-x-3">
@@ -37,64 +37,78 @@
             </div>
             <nav class="hidden md:flex items-center space-x-8 font-medium text-slate-300 text-sm">
                 <a href="#servicos" class="hover:text-brandGreen transition">Serviços</a>
+                <a href="#vantagens" class="hover:text-brandGreen transition">Porquê Nós</a>
                 <a href="#simulador" class="hover:text-brandGreen transition">Simulador</a>
-                <a href="#pagamentos" class="hover:text-brandGreen transition">Pagamentos</a>
+                <a href="#about" class="hover:text-brandGreen transition">Quem Somos</a>
             </nav>
             <div class="flex items-center space-x-4">
-                <button onclick="openManagerModal()" class="flex items-center space-x-2 bg-gradient-to-r from-brandPurple to-indigo-600 hover:from-indigo-600 hover:to-brandPurple text-white px-5 py-2.5 rounded-full text-xs font-bold transition shadow-lg shadow-indigo-500/25">
+                <button onclick="openManagerModal()" class="flex items-center space-x-2 bg-slate-900 border border-slate-700 hover:border-brandGreen text-slate-300 px-4 py-2 rounded-xl text-xs font-bold transition">
                     <i class="fa-solid fa-lock text-xs text-brandGreen"></i>
-                    <span>Portal do Gestor</span>
+                    <span>Gestor</span>
                 </button>
             </div>
         </div>
     </header>
 
-    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-20">
 
-        <!-- HERO BANNER PRINCIPAL (INSPIRADO NO BLOCO PRETO DO TOPO) -->
+        <!-- HERO BANNER COM ALTA PERSUASÃO -->
         <section class="relative bg-slate-900 border border-slate-800 rounded-[2.5rem] p-8 sm:p-14 overflow-hidden shadow-2xl">
-            <!-- Padrão abstrato gradiente no canto (estilo Hedy design) -->
             <div class="absolute -top-24 -right-24 w-96 h-96 bg-gradient-to-br from-indigo-600 via-purple-600 to-emerald-500 rounded-full blur-3xl opacity-30 pointer-events-none"></div>
-            <div class="absolute -bottom-20 -left-20 w-80 h-80 bg-brandBlue/30 rounded-full blur-2xl pointer-events-none"></div>
-
+            
             <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 <div class="lg:col-span-7 space-y-6">
                     <span class="inline-flex items-center space-x-2 bg-slate-800 border border-slate-700 text-brandGreen px-4 py-1.5 rounded-full text-xs font-bold">
                         <span class="w-2 h-2 rounded-full bg-brandGreen animate-pulse"></span>
-                        <span>Serviços de Limpeza em Maputo & Matola</span>
+                        <span>Serviço Premium em Maputo & Matola</span>
                     </span>
 
                     <h2 class="text-4xl sm:text-6xl font-black tracking-tight leading-[1.1] text-white">
-                        limpeza <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-brandGreen via-emerald-400 to-indigo-400">profissional</span>
+                        Chega de stress com <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-brandGreen via-emerald-400 to-teal-300">limpezas profundas.</span>
                     </h2>
 
-                    <p class="text-slate-400 text-base sm:text-lg max-w-lg leading-relaxed">
-                        Mais simplicidade, flexibilidade e garantia de higiene para a sua residência ou empresa. Agende online em segundos.
+                    <p class="text-slate-300 text-base sm:text-lg max-w-lg leading-relaxed">
+                        Deixe a sua casa ou escritório impecável com profissionais rigorosamente selecionados e verificados. Reserve em menos de 1 minuto e pague de forma segura.
                     </p>
 
                     <div class="pt-2 flex flex-wrap items-center gap-4">
-                        <a href="#simulador" class="bg-brandGreen text-slate-950 font-bold px-7 py-3.5 rounded-full hover:bg-emerald-400 transition shadow-lg shadow-emerald-500/20 text-sm">
-                            Simular Cotação (MT)
+                        <a href="#simulador" class="bg-brandGreen text-slate-950 font-extrabold px-8 py-4 rounded-2xl hover:bg-emerald-400 transition shadow-xl shadow-emerald-500/20 text-sm flex items-center space-x-2">
+                            <span>Agendar Limpeza Agora</span>
+                            <i class="fa-solid fa-arrow-right"></i>
                         </a>
-                        <a href="https://wa.me/258840000000" target="_blank" class="bg-slate-800 text-white font-bold px-7 py-3.5 rounded-full border border-slate-700 hover:bg-slate-700 transition flex items-center space-x-2 text-sm">
-                            <i class="fa-brands fa-whatsapp text-emerald-400 text-base"></i>
+                        <a href="https://wa.me/258840000000" target="_blank" class="bg-slate-800 text-white font-bold px-6 py-4 rounded-2xl border border-slate-700 hover:bg-slate-700 transition flex items-center space-x-2 text-sm">
+                            <i class="fa-brands fa-whatsapp text-emerald-400 text-lg"></i>
                             <span>Falar no WhatsApp</span>
                         </a>
                     </div>
+
+                    <!-- Mini Prova Social -->
+                    <div class="flex items-center space-x-4 pt-4 border-t border-slate-800/80">
+                        <div class="flex -space-x-2">
+                            <img class="w-9 h-9 rounded-full border-2 border-slate-900 object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="Cliente">
+                            <img class="w-9 h-9 rounded-full border-2 border-slate-900 object-cover" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="Cliente">
+                            <img class="w-9 h-9 rounded-full border-2 border-slate-900 object-cover" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=100&q=80" alt="Cliente">
+                        </div>
+                        <div>
+                            <div class="flex text-amber-400 text-xs">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-xs text-slate-400 mt-0.5"><strong class="text-white">+500 lares</strong> limpos e satisfeitos</p>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Card Visual Direita -->
                 <div class="lg:col-span-5 relative">
                     <div class="bg-gradient-to-tr from-indigo-900/60 to-purple-900/40 p-1 rounded-3xl border border-slate-700/80 shadow-2xl">
                         <div class="relative rounded-[1.4rem] overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80" alt="Profissional LimpaAki" class="w-full h-80 object-cover">
+                            <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80" alt="Limpeza LimpaAki" class="w-full h-80 object-cover">
                             <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
                             <div class="absolute bottom-4 left-4 right-4 bg-slate-900/90 backdrop-blur-md p-4 rounded-2xl border border-slate-700 flex items-center justify-between">
                                 <div>
-                                    <p class="text-xs text-slate-400 font-medium">Equipas Verificadas</p>
-                                    <p class="text-sm font-bold text-white">Segurança & Qualidade</p>
+                                    <p class="text-xs text-slate-400 font-medium">Garantia de Satisfação</p>
+                                    <p class="text-sm font-bold text-white">Se não ficar limpo, limpamos de novo</p>
                                 </div>
-                                <span class="bg-brandGreen/20 text-brandGreen p-2 rounded-xl text-xs font-bold">100% OK</span>
+                                <span class="bg-brandGreen/20 text-brandGreen p-2.5 rounded-xl text-xs font-bold"><i class="fa-solid fa-shield-check"></i></span>
                             </div>
                         </div>
                     </div>
@@ -102,76 +116,85 @@
             </div>
         </section>
 
-        <!-- SUBTÍTULO INSPIRADO NO DESIGN -->
-        <div class="text-center space-y-2 py-4">
-            <h3 class="text-2xl sm:text-3xl font-black text-white tracking-tight">Mais simplicidade, flexibilidade e controlo</h3>
-            <p class="text-slate-400 text-sm max-w-xl mx-auto">Escolha o plano ideal para a sua necessidade com total transparência de preços em Meticais.</p>
-        </div>
-
-        <!-- CARTÕES DE PACOTES DE SERVIÇOS (ESTILO "OFFRE WRAP / TOAST / CLUB") -->
-        <section id="servicos" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-            <!-- Pacote 1: Residencial -->
-            <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 hover:border-slate-700 transition relative overflow-hidden flex flex-col justify-between space-y-6">
-                <div class="space-y-4">
-                    <span class="text-xs font-bold text-purple-400 uppercase tracking-widest">Plano Casa</span>
-                    <h4 class="text-2xl font-black text-white">Limpeza Residencial</h4>
-                    <p class="text-xs text-slate-400 leading-relaxed">
-                        Manutenção regular ou limpeza profunda para apartamentos e vivendas.
-                    </p>
-                    <ul class="space-y-2.5 text-xs text-slate-300 pt-2">
-                        <li class="flex items-center space-x-2">
-                            <i class="fa-solid fa-check text-brandGreen"></i>
-                            <span>Limpeza padrão (a partir de 2.500 MT)</span>
-                        </li>
-                        <li class="flex items-center space-x-2">
-                            <i class="fa-solid fa-check text-brandGreen"></i>
-                            <span>Higienização pesada & profunda (4.500 MT)</span>
-                        </li>
-                        <li class="flex items-center space-x-2">
-                            <i class="fa-solid fa-check text-brandGreen"></i>
-                            <span>Lavagem de Sofás e Colchões (3.500 MT)</span>
-                        </li>
-                    </ul>
+        <!-- SEÇÃO DE VANTAGENS / PORQUÊ ESCOLHER (GERAR CONFIANÇA) -->
+        <section id="vantagens" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-slate-900/80 border border-slate-800 p-8 rounded-3xl space-y-3">
+                <div class="w-12 h-12 bg-emerald-500/10 text-brandGreen rounded-2xl flex items-center justify-center text-xl font-bold mb-4">
+                    <i class="fa-solid fa-user-shield"></i>
                 </div>
-                <a href="#simulador" onclick="switchCategory('residencia')" class="block w-full bg-slate-800 hover:bg-slate-700 text-white font-bold py-3 text-center rounded-2xl text-xs transition border border-slate-700">
-                    Simular Residência
-                </a>
+                <h4 class="text-lg font-bold text-white">Equipe 100% Verificada</h4>
+                <p class="text-xs text-slate-400 leading-relaxed">Profissionais submetidos a rigorosos testes de segurança, testes práticos e antecedentes limpos para sua total paz.</p>
             </div>
-
-            <!-- Pacote 2: Pós-Obra & Empresas -->
-            <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 hover:border-slate-700 transition relative overflow-hidden flex flex-col justify-between space-y-6">
-                <div class="space-y-4">
-                    <span class="text-xs font-bold text-brandGreen uppercase tracking-widest">Plano Profissional</span>
-                    <h4 class="text-2xl font-black text-white">Empresas & Obras</h4>
-                    <p class="text-xs text-slate-400 leading-relaxed">
-                        Para escritórios, lojas comerciais ou limpeza pesada após remodelações.
-                    </p>
-                    <ul class="space-y-2.5 text-xs text-slate-300 pt-2">
-                        <li class="flex items-center space-x-2">
-                            <i class="fa-solid fa-check text-brandGreen"></i>
-                            <span>Limpeza Pós-Obra Básica (8.000 MT)</span>
-                        </li>
-                        <li class="flex items-center space-x-2">
-                            <i class="fa-solid fa-check text-brandGreen"></i>
-                            <span>Pós-Obra Completa (12.000 MT)</span>
-                        </li>
-                        <li class="flex items-center space-x-2">
-                            <i class="fa-solid fa-check text-brandGreen"></i>
-                            <span>Escritórios e Lojas (a partir de 6.000 MT)</span>
-                        </li>
-                    </ul>
+            <div class="bg-slate-900/80 border border-slate-800 p-8 rounded-3xl space-y-3">
+                <div class="w-12 h-12 bg-blue-500/10 text-blue-400 rounded-2xl flex items-center justify-center text-xl font-bold mb-4">
+                    <i class="fa-solid fa-bolt"></i>
                 </div>
-                <a href="#simulador" onclick="switchCategory('obras')" class="block w-full bg-gradient-to-r from-brandPurple to-indigo-600 hover:opacity-90 text-white font-bold py-3 text-center rounded-2xl text-xs transition shadow-lg shadow-indigo-500/20">
-                    Simular Empresas / Obras
-                </a>
+                <h4 class="text-lg font-bold text-white">Agendamento Rápido</h4>
+                <p class="text-xs text-slate-400 leading-relaxed">Sem burocracias. Escolha o serviço, a zona, pague com M-Pesa ou e-Mola e a nossa equipa vai até si.</p>
             </div>
-
+            <div class="bg-slate-900/80 border border-slate-800 p-8 rounded-3xl space-y-3">
+                <div class="w-12 h-12 bg-purple-500/15 text-purple-400 rounded-2xl flex items-center justify-center text-xl font-bold mb-4">
+                    <i class="fa-solid fa-hand-holding-dollar"></i>
+                </div>
+                <h4 class="text-lg font-bold text-white">Preços Transparentes</h4>
+                <p class="text-xs text-slate-400 leading-relaxed">Sem taxas escondidas. Sabe exatamente quanto vai pagar em Meticais antes mesmo de confirmar o serviço.</p>
+            </div>
         </section>
 
-        <!-- SEÇÃO DE PAGAMENTOS COM LOGOS PNG LOCAIS -->
-        <section id="pagamentos" class="bg-slate-900/60 border border-slate-800 rounded-3xl p-8 text-center space-y-6">
-            <h4 class="text-lg font-bold text-white">Pagamentos 100% Seguros em Moçambique</h4>
+        <!-- PLANOS E SERVIÇOS -->
+        <section id="servicos" class="space-y-8">
+            <div class="text-center space-y-2">
+                <span class="text-xs font-bold uppercase text-brandGreen tracking-widest">Nossos Serviços</span>
+                <h3 class="text-3xl font-black text-white">Soluções sob medida para cada espaço</h3>
+                <p class="text-slate-400 text-sm max-w-xl mx-auto">Escolha o pacote ideal e clique para simular instantaneamente no formulário abaixo.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Residencial -->
+                <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 flex flex-col justify-between space-y-6 hover:border-slate-700 transition">
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-bold text-purple-400 uppercase tracking-widest">Mais Procurado</span>
+                            <span class="bg-brandGreen/20 text-brandGreen px-3 py-1 rounded-full text-xs font-bold">Desde 2.500 MT</span>
+                        </div>
+                        <h4 class="text-2xl font-black text-white">Limpeza Residencial & Profunda</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">Ideal para apartamentos, vivendas e higienização completa de sofás e colchões em Maputo e Matola.</p>
+                        <ul class="space-y-2.5 text-xs text-slate-300">
+                            <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-brandGreen"></i><span>Limpeza de quartos, salas e cozinhas</span></li>
+                            <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-brandGreen"></i><span>Desinfeção rigorosa de casas de banho</span></li>
+                            <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-brandGreen"></i><span>Equipamentos e detergentes incluídos</span></li>
+                        </ul>
+                    </div>
+                    <a href="#simulador" onclick="switchCategory('residencia')" class="w-full bg-slate-800 hover:bg-slate-700 text-white font-bold py-3.5 text-center rounded-2xl text-xs transition border border-slate-700">
+                        Selecionar e Simular Residência
+                    </a>
+                </div>
+
+                <!-- Obras & Empresas -->
+                <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 flex flex-col justify-between space-y-6 hover:border-slate-700 transition">
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-bold text-brandGreen uppercase tracking-widest">Corporativo & Obras</span>
+                            <span class="bg-indigo-500/20 text-indigo-400 px-3 py-1 rounded-full text-xs font-bold">Desde 6.000 MT</span>
+                        </div>
+                        <h4 class="text-2xl font-black text-white">Pós-Obra & Escritórios</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">Remoção completa de resíduos de construção, poeira fina e manutenção regular de escritórios e lojas comerciais.</p>
+                        <ul class="space-y-2.5 text-xs text-slate-300">
+                            <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-brandGreen"></i><span>Remoção de restos de tinta e cimento</span></li>
+                            <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-brandGreen"></i><span>Limpeza pesada de vidros e caixilharias</span></li>
+                            <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-brandGreen"></i><span>Planos flexíveis para empresas</span></li>
+                        </ul>
+                    </div>
+                    <a href="#simulador" onclick="switchCategory('obras')" class="w-full bg-gradient-to-r from-brandPurple to-indigo-600 hover:opacity-90 text-white font-bold py-3.5 text-center rounded-2xl text-xs transition shadow-lg shadow-indigo-500/20">
+                        Selecionar Obras / Empresas
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- MÉTODOS DE PAGAMENTO -->
+        <section class="bg-slate-900/60 border border-slate-800 rounded-3xl p-8 text-center space-y-6">
+            <h4 class="text-lg font-bold text-white">Pagamentos Seguros com Operadores Locais</h4>
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto">
                 <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl flex flex-col items-center justify-center hover:border-brandGreen transition">
                     <img src="images/mpesa.png" alt="M-Pesa" class="h-10 object-contain mb-2">
@@ -192,12 +215,13 @@
             </div>
         </section>
 
-        <!-- SIMULADOR DE PEDIDOS -->
+        <!-- SIMULADOR E FORMULÁRIO DE PEDIDO -->
         <section id="simulador" class="bg-slate-900 border border-slate-800 rounded-3xl p-8 sm:p-12 shadow-2xl">
             <div class="max-w-2xl mx-auto space-y-8">
                 <div class="text-center space-y-2">
-                    <h3 class="text-2xl font-black text-white">Simule o seu Pedido</h3>
-                    <p class="text-xs text-slate-400">Selecione o serviço e envie o agendamento diretamente ao gestor.</p>
+                    <span class="text-xs font-bold uppercase text-brandGreen tracking-widest">Reserva Online</span>
+                    <h3 class="text-2xl font-black text-white">Agende o seu serviço em segundos</h3>
+                    <p class="text-xs text-slate-400">Preencha os dados abaixo. O nosso gestor receberá o pedido instantaneamente.</p>
                 </div>
 
                 <!-- ABAS DE NAVEGAÇÃO -->
@@ -245,7 +269,7 @@
                     </div>
 
                     <div>
-                        <label class="block text-[11px] font-bold uppercase text-slate-400 mb-2">Forma de Pagamento</label>
+                        <label class="block text-[11px] font-bold uppercase text-slate-400 mb-2">Forma de Pagamento Preferida</label>
                         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
                             <label class="bg-slate-950 border border-slate-800 p-2.5 rounded-xl flex items-center space-x-2 cursor-pointer hover:border-brandGreen transition">
                                 <input type="radio" name="paymentMethod" value="M-Pesa" checked class="accent-brandGreen">
@@ -272,10 +296,10 @@
 
                     <div class="bg-slate-950 border border-slate-800 p-5 rounded-2xl flex items-center justify-between">
                         <div>
-                            <span class="text-[11px] font-bold uppercase text-slate-400 block">Total Estimado</span>
+                            <span class="text-[11px] font-bold uppercase text-slate-400 block">Total Estimado do Serviço</span>
                             <span id="totalDisplay" class="text-2xl font-black text-brandGreen">2.500 MT</span>
                         </div>
-                        <span class="text-xs text-slate-400">Pagamento no local</span>
+                        <span class="text-xs text-slate-400 text-right">Pagamento efetuado<br>após conclusão</span>
                     </div>
 
                     <button type="submit" id="submitBtn" class="w-full bg-brandGreen hover:bg-emerald-400 text-slate-950 font-black py-4 rounded-xl transition shadow-lg shadow-emerald-500/20 text-xs tracking-wider uppercase flex items-center justify-center space-x-2">
@@ -285,10 +309,43 @@
             </div>
         </section>
 
+        <!-- QUEM SOMOS / ABOUT US (ADICIONADO NO FIM) -->
+        <section id="about" class="bg-slate-900 border border-slate-800 rounded-3xl p-8 sm:p-12 space-y-8">
+            <div class="max-w-3xl mx-auto text-center space-y-3">
+                <span class="text-xs font-bold uppercase text-brandGreen tracking-widest">Sobre o LimpaAki</span>
+                <h3 class="text-3xl font-black text-white">Quem Somos e Qual a nossa Missão</h3>
+                <p class="text-slate-300 text-sm leading-relaxed">
+                    Fundado em Maputo, o <strong class="text-white">LimpaAki Moçambique</strong> nasceu com o propósito de revolucionar o setor de serviços de limpeza profissional. Acreditamos que um ambiente limpo e higienizado é essencial para a produtividade, bem-estar e saúde das famílias e empresas moçambicanas.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+                <div class="bg-slate-950 border border-slate-800/80 p-6 rounded-2xl space-y-2">
+                    <div class="text-brandGreen text-xl font-bold"><i class="fa-solid fa-bullseye"></i></div>
+                    <h4 class="text-base font-bold text-white">A nossa Missão</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed">Proporcionar mais tempo livre e conforto aos nossos clientes, entregando serviços de limpeza com rigor, pontualidade e excelência.</p>
+                </div>
+                <div class="bg-slate-950 border border-slate-800/80 p-6 rounded-2xl space-y-2">
+                    <div class="text-indigo-400 text-xl font-bold"><i class="fa-solid fa-eye"></i></div>
+                    <h4 class="text-base font-bold text-white">A nossa Visão</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed">Ser a plataforma líder de referência em gestão e prestação de serviços de limpeza em toda a região metropolitana de Maputo e Matola.</p>
+                </div>
+                <div class="bg-slate-950 border border-slate-800/80 p-6 rounded-2xl space-y-2">
+                    <div class="text-amber-400 text-xl font-bold"><i class="fa-solid fa-gem"></i></div>
+                    <h4 class="text-base font-bold text-white">Os nossos Valores</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed">Transparência nos preços em Meticais, integridade com as equipas, segurança no lar do cliente e melhoria contínua.</p>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-800 pt-8 text-center text-xs text-slate-500">
+                <p>&copy; 2026 LimpaAki Moçambique. Todos os direitos reservados. Maputo & Matola.</p>
+            </div>
+        </section>
+
     </main>
 
     <!-- MODAL DE LOGIN DO GESTOR -->
-    <div id="managerModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div id="managerModal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
         <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-md w-full p-8 shadow-2xl relative">
             <button onclick="closeManagerModal()" class="absolute top-6 right-6 text-slate-400 hover:text-white">
                 <i class="fa-solid fa-xmark text-lg"></i>
